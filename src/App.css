@@ -1,3 +1,4 @@
+/* --- COMPONENTES GERAIS --- */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -17,8 +18,10 @@
   }
 }
 
+/* --- ANIMAÇÕES E HERO (CAFÉ/LOGO) --- */
 .hero {
   position: relative;
+  margin: 40px 0;
 
   .base,
   .framework,
@@ -56,6 +59,7 @@
   }
 }
 
+/* --- ESTRUTURA DA ONE-PAGE --- */
 #center {
   display: flex;
   flex-direction: column;
@@ -63,6 +67,7 @@
   place-content: center;
   place-items: center;
   flex-grow: 1;
+  padding-bottom: 80px;
 
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
@@ -70,6 +75,23 @@
   }
 }
 
+/* Classes para as seções automáticas */
+section {
+  width: 100%;
+  border-top: 1px solid var(--border);
+  padding: 100px 0; /* Espaço para o scroll-behavior não cortar o título */
+}
+
+/* Estilo específico para a área de contato */
+#contact {
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- ELEMENTOS DE LISTA E LINKS --- */
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
@@ -153,6 +175,7 @@
   }
 }
 
+/* --- DECORAÇÃO E ESPAÇAMENTO --- */
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
@@ -182,3 +205,4 @@
     border-right-color: var(--border);
   }
 }
+
