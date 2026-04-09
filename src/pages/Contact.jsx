@@ -18,8 +18,9 @@ const Contact = () => {
   return (
     <div style={sectionStyle}>
       <div style={containerStyle}>
-        <h2 style={{ color: '#fff', fontSize: '32px', marginBottom: '10px' }}>Entre em Contato</h2>
-        <p style={{ color: '#ccc', marginBottom: '30px' }}>Dúvidas ou sugestões? Mande uma mensagem para Bia!</p>
+        {/* Título trocado conforme pedido */}
+        <h2 style={{ color: '#fff', fontSize: '32px', marginBottom: '10px' }}>Faça seu Pedido</h2>
+        <p style={{ color: '#ccc', marginBottom: '30px' }}>Mande sua lista de delícias e Bia prepara para você!</p>
         
         <form onSubmit={handleSubmit} style={formStyle}>
           <input 
@@ -38,70 +39,28 @@ const Contact = () => {
           />
           <textarea 
             style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }}
-            placeholder="Sua Mensagem" 
+            placeholder="Descreva seu pedido aqui (ex: 2 Capuccinos, 1 Pão de Queijo...)" 
             value={formData.message}
             onChange={(e) => setFormData({...formData, message: e.target.value})}
           />
           <button type="submit" style={buttonStyle}>
-            Enviar Mensagem
+            Enviar Pedido
           </button>
         </form>
 
         <div style={{ marginTop: '20px', minHeight: '24px' }}>
           {status === 'error' && <p style={{ color: '#ff4d4d' }}>⚠️ Preencha todos os campos!</p>}
-          {status === 'success' && <p style={{ color: '#2ecc71' }}>✅ Mensagem enviada com sucesso!</p>}
+          {status === 'success' && <p style={{ color: '#2ecc71' }}>✅ Pedido enviado com sucesso!</p>}
         </div>
       </div>
     </div>
   );
 };
 
-// --- ESTILOS PADRONIZADOS ---
-const sectionStyle = {
-  width: '100%',
-  backgroundColor: '#08060d', // FUNDO PRETO
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '80px 0'
-};
-
-const containerStyle = {
-  width: '100%',
-  maxWidth: '1126px', // LARGURA PADRÃO
-  padding: '0 20px',
-  textAlign: 'center',
-  boxSizing: 'border-box'
-};
-
-const formStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '15px',
-  maxWidth: '500px', // O formulário em si fica centralizado e menor
-  margin: '0 auto'
-};
-
-const inputStyle = {
-  padding: '15px',
-  borderRadius: '8px',
-  border: '1px solid #333',
-  background: '#1a1a1a', // Input cinza muito escuro
-  color: '#fff',         // Texto do input branco
-  fontSize: '16px',
-  outline: 'none'
-};
-
-const buttonStyle = {
-  background: '#fff',    // Botão branco para contrastar com o fundo preto
-  color: '#000',
-  border: 'none',
-  padding: '15px',
-  borderRadius: '8px',
-  cursor: 'pointer',
-  fontWeight: '700',
-  fontSize: '16px',
-  marginTop: '10px',
-  transition: 'transform 0.2s'
-};
+const sectionStyle = { width: '100%', backgroundColor: '#08060d', display: 'flex', justifyContent: 'center', padding: '80px 0' };
+const containerStyle = { width: '100%', maxWidth: '1126px', padding: '0 20px', textAlign: 'center', boxSizing: 'border-box' };
+const formStyle = { display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '500px', margin: '0 auto' };
+const inputStyle = { padding: '15px', borderRadius: '8px', border: '1px solid #333', background: '#1a1a1a', color: '#fff', fontSize: '16px', outline: 'none' };
+const buttonStyle = { background: '#fff', color: '#000', border: 'none', padding: '15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', fontSize: '16px', marginTop: '10px' };
 
 export default Contact;

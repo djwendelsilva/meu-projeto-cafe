@@ -23,22 +23,23 @@ const Home = () => {
   );
 };
 
-// --- ESTILOS PADRONIZADOS (1126px) ---
+// --- ESTILOS AJUSTADOS ---
 const sectionStyle = {
   width: '100%',
   display: 'flex',
   justifyContent: 'center',
-  padding: '40px 0',
+  padding: '0 0 40px 0', // Mudei de '40px 0' para '0 0 40px 0' (topo zero)
   background: '#ffffff'
 };
 
 const containerStyle = {
-  position: 'relative', // Permite o texto flutuar sobre a imagem
+  position: 'relative',
   width: '100%',
-  maxWidth: '1126px', // Alinhado com a Navbar e Footer
+  maxWidth: '1126px',
   height: '550px',
-  margin: '0 20px',
-  borderRadius: '20px',
+  // Se quiser que a imagem encoste nas bordas laterais também, mude o 20px para 0
+  margin: '0 20px', 
+  borderRadius: '0 0 20px 20px', // Arredonda apenas os cantos de baixo para encaixar no topo
   overflow: 'hidden',
   boxShadow: 'var(--shadow)',
 };
@@ -56,7 +57,6 @@ const overlayStyle = {
   left: 0,
   width: '100%',
   height: '100%',
-  /* Escurece a imagem para as letras brancas saltarem */
   background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6))', 
   display: 'flex',
   justifyContent: 'center',
@@ -66,13 +66,12 @@ const overlayStyle = {
 };
 
 const titleStyle = {
-  /* Fonte responsiva: grande no PC, ajustada no celular */
   fontSize: 'clamp(28px, 5vw, 56px)', 
   fontWeight: '800',
   color: '#ffffff',
   margin: '0',
   lineHeight: '1.1',
-  textShadow: '0px 4px 15px rgba(0, 0, 0, 0.9)', // Sombra forte para visibilidade total
+  textShadow: '0px 4px 15px rgba(0, 0, 0, 0.9)',
   fontFamily: 'var(--heading)',
   letterSpacing: '-1.5px',
   maxWidth: '800px'

@@ -4,13 +4,13 @@ import { HashLink as Link } from 'react-router-hash-link';
 const Navbar = () => {
   return (
     <nav style={navStyle}>
-      {/* Container interno para limitar a largura igual aos outros componentes */}
       <div style={innerNavStyle}>
         <div style={logoStyle}>Cafezinho da Bia</div>
         <ul style={ulStyle}>
           <li><Link smooth to="#features" style={linkStyle}>Cardápio</Link></li>
           <li><Link smooth to="#features" style={linkStyle}>Unidade</Link></li>
-          <li><Link smooth to="#contact" style={linkStyle}>Contato</Link></li>
+          {/* Trocado para Pedidos */}
+          <li><Link smooth to="#contact" style={linkStyle}>Pedidos</Link></li>
         </ul>
       </div>
     </nav>
@@ -25,17 +25,17 @@ const navStyle = {
   top: 0,
   zIndex: 1000,
   display: 'flex',
-  justifyContent: 'center' // Centraliza o container interno
+  justifyContent: 'center'
 };
 
 const innerNavStyle = {
   width: '100%',
-  maxWidth: '1126px', // LARGURA PADRÃO
+  maxWidth: '1126px',
   height: '80px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0 20px', // PADDING PADRÃO
+  padding: '0 20px',
   boxSizing: 'border-box'
 };
 
