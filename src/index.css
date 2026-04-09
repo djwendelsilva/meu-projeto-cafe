@@ -1,8 +1,14 @@
-#root {
-  width: 1126px;
-  max-width: 90%; /* Garante que não quebre no celular */
-  margin: 0 auto;  /* Centraliza na tela */
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
 }
