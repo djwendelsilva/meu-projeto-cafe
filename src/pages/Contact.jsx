@@ -1,24 +1,27 @@
 import { useState } from 'react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', whatsapp: '', message: '' }); // Trocado email por whatsapp
   const [status, setStatus] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.whatsapp || !formData.message) {
       setStatus('error');
       return;
     }
+    
+    // Log para você ver os dados no console
+    console.log("Pedido recebido:", formData);
+    
     setStatus('success');
-    setFormData({ name: '', email: '', message: '' }); 
+    setFormData({ name: '', whatsapp: '', message: '' }); 
     setTimeout(() => setStatus(''), 5000);
   };
 
   return (
     <div style={sectionStyle}>
       <div style={containerStyle}>
-        {/* Título trocado conforme pedido */}
         <h2 style={{ color: '#fff', fontSize: '32px', marginBottom: '10px' }}>Faça seu Pedido</h2>
         <p style={{ color: '#ccc', marginBottom: '30px' }}>Mande sua lista de delícias e Bia prepara para você!</p>
         
@@ -30,19 +33,23 @@ const Contact = () => {
             value={formData.name}
             onChange={(e) => setFormData({...formData, name: e.target.value})}
           />
+          
+          {/* Campo de WhatsApp atualizado */}
           <input 
             style={inputStyle}
-            type="email" 
-            placeholder="Seu E-mail" 
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            type="tel" 
+            placeholder="Seu WhatsApp (ex: 21 99999-9999)" 
+            value={formData.whatsapp}
+            onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
           />
+          
           <textarea 
             style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }}
             placeholder="Descreva seu pedido aqui (ex: 2 Capuccinos, 1 Pão de Queijo...)" 
             value={formData.message}
             onChange={(e) => setFormData({...formData, message: e.target.value})}
           />
+          
           <button type="submit" style={buttonStyle}>
             Enviar Pedido
           </button>
@@ -57,6 +64,7 @@ const Contact = () => {
   );
 };
 
+// --- ESTILOS MANTIDOS ---
 const sectionStyle = { width: '100%', backgroundColor: '#08060d', display: 'flex', justifyContent: 'center', padding: '80px 0' };
 const containerStyle = { width: '100%', maxWidth: '1126px', padding: '0 20px', textAlign: 'center', boxSizing: 'border-box' };
 const formStyle = { display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '500px', margin: '0 auto' };
