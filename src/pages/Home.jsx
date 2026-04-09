@@ -15,7 +15,7 @@ const Home = () => {
         {/* Camada de Contraste e Texto Centralizado */}
         <div style={overlayStyle}>
           <h1 style={titleStyle}>
-            Café quentinho para <br/> acompanhar seu caminho
+            Onde o movimento da rua <br/> encontra um som e um bom café
           </h1>
         </div>
       </div>
