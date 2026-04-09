@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar.jsx";
 import Home from './pages/Home';
 import Features from './components/Features';
 import Contact from './pages/Contact';
+import Footer from './components/Footer'; // 1. Importe aqui
 
 function App() {
   return (
@@ -12,7 +13,6 @@ function App() {
         <Home />
       </section>
       
-      {/* Aqui é o destino dos links de Cardápio e Unidade */}
       <section id="features">
         <Features /> 
       </section>
@@ -20,6 +20,8 @@ function App() {
       <section id="contact">
         <Contact />
       </section>
+
+      <Footer /> {/* 2. Adicione aqui no final */}
     </div>
   );
 }
