@@ -2,58 +2,60 @@ import React, { useState, useEffect } from 'react';
 
 const Map = () => {
   const [loading, setLoading] = useState(true);
-  const address = "R. Laura de Araújo - Cidade Nova, Rio de Janeiro - RJ, 20211-070";
-  
-  // Simulação de chamada de API (Requisito de Ponto Extra)
+
+  // Esta é a URL exata de incorporação (embed) que o Google permite exibir
+  const googleMapsEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.5098774649305!2d-43.203294125530974!3d-22.90994603798238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997fc6f2d7f4e9%3A0xc53d00005ed910f4!2sCaf%C3%A9zinho%20da%20Bia.!5e1!3m2!1spt-BR!2sbr!4v1775700448934!5m2!1spt-BR!2sbr";
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500); // Simula 1.5s de carregamento da API
+    const timer = setTimeout(() => setLoading(false), 1200); 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div style={mapContainerStyle}>
+    <div style={mapFullWidthWrapper}>
       {loading ? (
         <div style={loaderStyle}>
           <div className="spinner"></div>
-          <p>Carregando mapa interativo...</p>
+          <p style={{color: '#666', marginTop: '10px'}}>Localizando o Cafézinho da Bia...</p>
         </div>
       ) : (
         <iframe
           title="Mapa Cafezinho da Bia"
+          src={googleMapsEmbedUrl}
           width="100%"
-          height="450"
-          style={{ border: 0, borderRadius: '15px' }}
+          height="350"
+          style={{ border: 0, display: 'block' }}
+          allowFullScreen=""
           loading="lazy"
-          allowFullScreen
-          src={`https://google.com{encodeURIComponent(address)}`}
-          // Nota: Para fins de teste local sem chave, usaremos a URL de embed padrão:
-          src="https://google.com"
+          referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       )}
     </div>
   );
 };
 
-// --- ESTILOS ---
-const mapContainerStyle = {
-  width: '100%',
-  maxWidth: '1126px',
-  margin: '40px auto',
-  padding: '0 20px',
-  boxSizing: 'border-box'
+// --- ESTILOS PARA LARGURA TOTAL (FULL WIDTH) ---
+const mapFullWidthWrapper = {
+  width: '100vw',         // Ocupa 100% da largura da janela
+  position: 'relative',
+  left: '50%',
+  right: '50%',
+  marginLeft: '-50vw',    // Técnica para expandir além do container de 1126px
+  marginRight: '-50vw',
+  padding: 0,
+  lineHeight: 0,
+  marginTop: '40px',
+  overflow: 'hidden'
 };
 
 const loaderStyle = {
-  height: '450px',
+  height: '350px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  background: '#f4f4f4',
-  borderRadius: '15px',
-  color: '#666'
+  background: '#f9f9f9',
+  width: '100vw'
 };
 
 export default Map;
