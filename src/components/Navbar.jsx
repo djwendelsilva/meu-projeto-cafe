@@ -37,17 +37,28 @@ const navStyle = {
 const innerNavStyle = {
   width: '100%',
   maxWidth: '1126px',
-  height: '80px',
+  minHeight: '80px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0 20px',
-  boxSizing: 'border-box'
+  padding: '10 20px',
+  boxSizing: 'border-box',
+  flexWrap: 'wrap'
+};
+
+const ulStyle = { 
+  display: 'flex', 
+  gap: '15px',        // Diminuímos o espaço entre links (era 30px)
+  listStyle: 'none', 
+  margin: '5px 0', 
+  padding: 0,
+  flexWrap: 'wrap',   // Permite que os links se organizem em duas linhas no celular
+  justifyContent: 'center' 
 };
 
 // Estilo do Nome como Link (sem sublinhado)
 const logoLinkStyle = { 
-  fontSize: '22px', 
+  fontSize: '20px', 
   fontWeight: '800', 
   color: '#000000', 
   letterSpacing: '-1px',
@@ -55,7 +66,6 @@ const logoLinkStyle = {
   cursor: 'pointer'
 };
 
-const ulStyle = { display: 'flex', gap: '30px', listStyle: 'none', margin: 0, padding: 0 };
 const linkStyle = { textDecoration: 'none', color: '#333333', fontSize: '15px', fontWeight: '600' };
 
 export default Navbar;

@@ -69,5 +69,12 @@ const subtitleStyle = {
   lineHeight: '1.1'
 };
 
+const heroImageStyle = {
+  width: '100%',
+  height: 'auto',      // Mantém a proporção
+  maxHeight: '100vh',  // Não deixa passar da altura da tela
+  objectFit: 'cover',  // Faz a imagem preencher o espaço sem esticar
+  display: 'block'
+};
 
 export default Home;
