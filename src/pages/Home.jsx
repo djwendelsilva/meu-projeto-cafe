@@ -14,13 +14,12 @@ const Home = () => {
   );
 };
 
-// Mudei o estilo para detectar a largura da tela direto na linha da altura
 const containerStyle = { 
   width: '100%', 
-  // Se a tela for menor que 768px, usa 60vh, senão usa 80vh
-  height: window.innerWidth <= 768 ? '60vh' : '80vh', 
+  height: window.innerWidth <= 768 ? '90vh' : '80vh', 
   backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${imagemHome})`,
   backgroundSize: 'cover',   
+  backgroundPosition: window.innerWidth <= 768 ? '65% center' : 'center',
   backgroundPosition: 'center', 
   backgroundRepeat: 'no-repeat',
   display: 'flex',
