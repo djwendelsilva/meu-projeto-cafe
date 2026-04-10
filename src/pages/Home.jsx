@@ -2,8 +2,8 @@ import React from 'react';
 import imagemHome from '../assets/Bia.Cafe.png'; 
 
 const Home = () => {
+    const isMobile = window.innerWidth <= 768;
   return (
-    // Removida a div externa para que a imagem possa encostar nas bordas da tela
     <div style={containerStyle} id="home">
       <div style={contentStyle}>
         <h1 style={titleStyle}>Bem-vindo ao Cafezinho da Bia</h1>
@@ -17,12 +17,14 @@ const Home = () => {
 
 const containerStyle = { 
   width: '100%', 
-  height: '70vh', // Ocupa 80% da altura da tela (ajusta no celular e PC)
+  height: '65vh', // Ocupa 80% da altura da tela (ajusta no celular e PC)
+  height: isMobile ? '60vh' : '80vh', 
   backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${imagemHome})`,
   backgroundSize: 'cover',   // Faz a imagem cobrir todo o espaço sem achatar
   backgroundPosition: 'center', // Mantém o carrinho/centro visível
   backgroundRepeat: 'no-repeat',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center', // Centraliza o texto verticalmente na imagem
   alignItems: 'center',
   textAlign: 'center',
