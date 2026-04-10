@@ -14,6 +14,22 @@ const Home = () => {
   );
 };
 
+const heroImageStyle = {
+  width: '100%',
+  height: '100vh',       // No celular, força a imagem a ocupar a altura da tela
+  objectFit: 'cover',    // Corta os lados da imagem para ela preencher o centro
+  objectPosition: 'center', // Garante que o centro da imagem (o carrinho) apareça
+  display: 'block'
+};
+
+const responsiveHeroStyle = {
+  width: '100%',
+  height: 'auto',        // No PC ela segue a proporção normal
+  minHeight: '400px',    // Não deixa ficar pequena demais
+  objectFit: 'cover',
+  display: 'block'
+};
+
 const sectionStyle = { 
   width: '100%', 
   backgroundColor: '#08060d', 
@@ -67,14 +83,6 @@ const subtitleStyle = {
   textShadow: '1px 1px 5px rgba(0,0,0,0.8)',
   maxWidth: '80%', 
   lineHeight: '1.1'
-};
-
-const heroImageStyle = {
-  width: '100%',
-  height: 'auto',      // Mantém a proporção
-  maxHeight: '400vh',  // Não deixa passar da altura da tela
-  objectFit: 'cover',  // Faz a imagem preencher o espaço sem esticar
-  display: 'block'
 };
 
 export default Home;

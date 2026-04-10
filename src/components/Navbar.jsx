@@ -39,12 +39,12 @@ const innerNavStyle = {
   maxWidth: '1126px',
   minHeight: '80px',
   display: 'flex',
+  flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '10 20px',
   boxSizing: 'border-box',
-  flexWrap: 'wrap',
-  gap: '10px'
+  flexWrap: 'wrap'
 };
 
 const ulStyle = { 
