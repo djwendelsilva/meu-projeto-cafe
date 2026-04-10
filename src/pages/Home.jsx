@@ -17,18 +17,18 @@ const Home = () => {
 
 const containerStyle = { 
   width: '100%', 
-  height: '80vh', // Ocupa 80% da altura da tela (ajusta no celular e PC)
+  height: '70vh', // Ocupa 80% da altura da tela (ajusta no celular e PC)
   backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${imagemHome})`,
   backgroundSize: 'cover',   // Faz a imagem cobrir todo o espaço sem achatar
   backgroundPosition: 'center', // Mantém o carrinho/centro visível
+  backgroundRepeat: 'no-repeat',
   display: 'flex',
-  flexDirection: 'column',
   justifyContent: 'center', // Centraliza o texto verticalmente na imagem
   alignItems: 'center',
   textAlign: 'center',
   margin: '0',
   padding: '0',
-  boxSizing: 'border-box'
+  overflow: 'hidden'
 };
 
 const contentStyle = { 
