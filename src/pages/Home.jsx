@@ -72,7 +72,7 @@ const subtitleStyle = {
 const heroImageStyle = {
   width: '100%',
   height: 'auto',      // Mantém a proporção
-  maxHeight: '100vh',  // Não deixa passar da altura da tela
+  maxHeight: '400vh',  // Não deixa passar da altura da tela
   objectFit: 'cover',  // Faz a imagem preencher o espaço sem esticar
   display: 'block'
 };

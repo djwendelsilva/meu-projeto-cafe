@@ -43,15 +43,16 @@ const innerNavStyle = {
   alignItems: 'center',
   padding: '10 20px',
   boxSizing: 'border-box',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  gap: '10px'
 };
 
 const ulStyle = { 
   display: 'flex', 
   gap: '15px',        // Diminuímos o espaço entre links (era 30px)
   listStyle: 'none', 
-  margin: '5px 0', 
-  padding: 0,
+  margin: '0', 
+  padding: '0',
   flexWrap: 'wrap',   // Permite que os links se organizem em duas linhas no celular
   justifyContent: 'center' 
 };
