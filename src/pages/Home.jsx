@@ -14,13 +14,14 @@ const Home = () => {
   );
 };
 
+const isMobile = window.innerWidth <= 768;
+
 const containerStyle = { 
   width: '100%', 
-  height: window.innerWidth <= 768 ? '90vh' : '80vh', 
+  height: isMobile ? '50vh' : '85vh', 
   backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${imagemHome})`,
   backgroundSize: 'cover',   
-  backgroundPosition: window.innerWidth <= 768 ? '65% center' : 'center',
-  backgroundPosition: 'center', 
+  backgroundPosition: isMobile ? '70% center' : 'center', 
   backgroundRepeat: 'no-repeat',
   display: 'flex',
   flexDirection: 'column',
@@ -34,9 +35,8 @@ const containerStyle = {
 };
 
 const contentStyle = { 
-  width: '90%',
   maxWidth: '900px',
-  padding: '20px'
+  marginTop: isMobile ? '-20px' : '0'
 };
 
 const titleStyle = { 
