@@ -1,80 +1,73 @@
 import React from 'react';
-import fotoCafe from '../assets/bia.cafe.png'; 
+import imagemHome from '../assets/Bia.Cafe.png'; 
 
 const Home = () => {
   return (
     <div style={sectionStyle}>
       <div style={containerStyle}>
-        {/* Imagem de Fundo */}
-        <img 
-          src={fotoCafe} 
-          alt="Carrinho Cafezinho da Bia" 
-          style={imageStyle} 
-        />
-        
-        {/* Camada de Contraste e Texto Centralizado */}
-        <div style={overlayStyle}>
-          <h1 style={titleStyle}>
-            Onde o movimento da rua <br/> encontra um som e um bom café
-          </h1>
+        <div style={contentStyle}>
+          <h1 style={titleStyle}>Bem-vindo ao Cafezinho da Bia</h1>
+          <p style={subtitleStyle}>Onde o movimento da rua encontra<br/>ótima música e um bom café.</p>
         </div>
       </div>
     </div>
   );
 };
 
-// --- ESTILOS AJUSTADOS ---
-const sectionStyle = {
-  width: '100%',
+const sectionStyle = { 
+  width: '100%', 
+  backgroundColor: '#08060d', 
   display: 'flex',
   justifyContent: 'center',
-  padding: '0 0 40px 0', // Mudei de '40px 0' para '0 0 40px 0' (topo zero)
-  background: '#ffffff'
-};
-
-const containerStyle = {
-  position: 'relative',
-  width: '100%',
-  maxWidth: '1126px',
-  height: '550px',
-  // Se quiser que a imagem encoste nas bordas laterais também, mude o 20px para 0
-  margin: '0 20px', 
-  borderRadius: '0 0 20px 20px', // Arredonda apenas os cantos de baixo para encaixar no topo
-  overflow: 'hidden',
-  boxShadow: 'var(--shadow)',
-};
-
-const imageStyle = {
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  display: 'block',
-};
-
-const overlayStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6))', 
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  padding: '20px'
-};
-
-const titleStyle = {
-  fontSize: 'clamp(28px, 5vw, 56px)', 
-  fontWeight: '800',
-  color: '#ffffff',
   margin: '0',
-  lineHeight: '1.1',
-  textShadow: '0px 4px 15px rgba(0, 0, 0, 0.9)',
-  fontFamily: 'var(--heading)',
-  letterSpacing: '-1.5px',
-  maxWidth: '800px'
+  padding: '0'
 };
+
+const containerStyle = { 
+  width: '100%', 
+  maxWidth: '1200px',
+  // A altura e a proporção ficam apenas aqui na imagem
+  height: 'auto',
+  aspectRatio: '17/9', 
+  minHeight: '80vh', // Altura mínima para não esmagar o texto no zoom
+  backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${imagemHome})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  textAlign: 'center',
+  overflow: 'hidden',
+  borderRadius: '0 0 15px 15px'
+};
+
+const contentStyle = { 
+  width: '90%', // Ocupa 90% da largura da imagem
+  maxWidth: '800px',
+  padding: '0 20px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  // REMOVIDO: height, aspectRatio e objectFit daqui
+};
+
+const titleStyle = { 
+  color: '#fff', 
+  // CORREÇÃO: clamp(mínimo, preferido, máximo) substitui minFontSize/maxFontSize
+  fontSize: 'clamp(28px, 4.5vw, 56px)', 
+  fontWeight: 'bold', 
+  textShadow: '2px 2px 10px rgba(0,0,0,0.8)', 
+  marginBottom: '1px', 
+  lineHeight: '1.2'
+};
+
+const subtitleStyle = { 
+  color: '#eee', 
+  fontSize: 'clamp(20px, 2.4vw, 60px)', 
+  textShadow: '1px 1px 5px rgba(0,0,0,0.8)',
+  maxWidth: '80%', 
+  lineHeight: '1.1'
+};
+
 
 export default Home;

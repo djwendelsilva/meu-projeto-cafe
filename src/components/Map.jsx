@@ -1,61 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import styled from 'styled-components';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// CORREÇÃO DO ÍCONE: Importa as imagens padrão do Leaflet para o marcador aparecer
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+// Configura o ícone padrão para evitar que o marcador fique invisível
+let DefaultIcon = L.icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+});
+L.Marker.prototype.options.icon = DefaultIcon;
+
+const MapWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  /* Garante que o mapa não tenha margens internas sobrando */
+  display: block; 
+`;
 
 const Map = () => {
-  const [loading, setLoading] = useState(true);
-
-  // Esta é a URL exata de incorporação (embed) que o Google permite exibir
-  const googleMapsEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.5098774649305!2d-43.203294125530974!3d-22.90994603798238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997fc6f2d7f4e9%3A0xc53d00005ed910f4!2sCaf%C3%A9zinho%20da%20Bia.!5e1!3m2!1spt-BR!2sbr!4v1775700448934!5m2!1spt-BR!2sbr";
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200); 
-    return () => clearTimeout(timer);
-  }, []);
+  // Coordenadas da R. Laura de Araújo, Cidade Nova - RJ
+  const position = [-22.9115, -43.2003]; 
 
   return (
-    <div style={mapFullWidthWrapper}>
-      {loading ? (
-        <div style={loaderStyle}>
-          <div className="spinner"></div>
-          <p style={{color: '#666', marginTop: '10px'}}>Localizando o Cafézinho da Bia...</p>
-        </div>
-      ) : (
-        <iframe
-          title="Mapa Cafezinho da Bia"
-          src={googleMapsEmbedUrl}
-          width="100%"
-          height="350"
-          style={{ border: 0, display: 'block' }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      )}
-    </div>
+    <MapWrapper>
+      <MapContainer 
+        center={position} 
+        zoom={16} 
+        // Importante: a altura 100% aqui preenche o container pai (Contact)
+        style={{ height: "100%", width: "100%" }}
+        scrollWheelZoom={false}
+      >
+        <TileLayer 
+          attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" 
+        />
+        <Marker position={position}>
+          <Popup>
+            ☕ <strong>Bia Café</strong> <br /> 
+            Cidade Nova, RJ
+          </Popup>
+        </Marker>
+      </MapContainer>
+    </MapWrapper>
   );
-};
-
-// --- ESTILOS PARA LARGURA TOTAL (FULL WIDTH) ---
-const mapFullWidthWrapper = {
-  width: '100vw',         // Ocupa 100% da largura da janela
-  position: 'relative',
-  left: '50%',
-  right: '50%',
-  marginLeft: '-50vw',    // Técnica para expandir além do container de 1126px
-  marginRight: '-50vw',
-  padding: 0,
-  lineHeight: 0,
-  marginTop: '40px',
-  overflow: 'hidden'
-};
-
-const loaderStyle = {
-  height: '350px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  background: '#f9f9f9',
-  width: '100vw'
 };
 
 export default Map;

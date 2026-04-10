@@ -12,7 +12,7 @@ const Navbar = () => {
         </Link>
 
         <ul style={ulStyle}>
-          <li><Link smooth to="#features" style={linkStyle}>Cardápio</Link></li>
+          <li><Link smooth to="#cardapio" style={linkStyle}>Cardápio</Link></li>
           <li><Link smooth to="#features" style={linkStyle}>Unidade</Link></li>
           <li><Link smooth to="#contact" style={linkStyle}>Pedidos</Link></li>
         </ul>

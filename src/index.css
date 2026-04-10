@@ -1,14 +1,33 @@
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Reseta margens do navegador e do Vite */
+:root {
+  width: 100%;
 }
 
-.spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid var(--accent);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #08060d;
+  overflow-x: hidden; /* Evita barra de rolagem lateral */
+}
+
+#root {
+  width: 100%;
+  max-width: none !important; /* Remove a trava de 1280px do Vite */
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Para a rolagem ser suave */
+}
+
+section {
+  /* Ajuste o valor (ex: 80px) para a altura exata da sua Navbar */
+  scroll-margin-top: 80px; 
+  scroll-behavior: smooth;
 }

@@ -1,29 +1,74 @@
-import CoffeeCard from '../components/CoffeeCard';
+import React from 'react';
+import imgCardapio from '../assets/cardapio.png';
 
-const Home = () => {
-  const coffees = [
-    { id: 1, name: "Espresso", price: "6.00", desc: "Intenso e aromático.", img: "https://unsplash.com" },
-    { id: 2, name: "Cappuccino", price: "12.00", desc: "Equilíbrio perfeito de leite e café.", img: "https://unsplash.com" },
-    { id: 3, name: "Caramel Macchiato", price: "15.50", desc: "Doçura do caramelo com toque de baunilha.", img: "https://unsplash.com" }
-  ];
-
+const Menu = () => {
   return (
-    <div style={{ padding: '50px 20px', backgroundColor: '#fdf5e6' }}>
-      <h2 style={{ textAlign: 'center', color: '#3e2723', marginBottom: '30px' }}>Nosso Cardápio</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {coffees.map(item => (
-          <CoffeeCard 
-            key={item.id}
-            name={item.name}
-            price={item.price}
-            description={item.desc}
-            image={item.img}
-          />
-        ))}
+    <div style={sectionStyle} id="cardapio">
+      <div style={containerStyle}>
+        <h2 style={titleStyle}>Nosso Cardápio</h2>
+        <p style={subtitleStyle}>Escolha suas delícias favoritas!</p>
+        
+        <div style={bannerStyle}>
+          <img src={imgCardapio} alt="Cardápio Bia Café" style={imageStyle} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+const sectionStyle = { 
+  width: '100%', 
+  backgroundColor: '#08060d', 
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center', 
+  minHeight: 'auto',  
+  padding: '60px 0', 
+  overflow: 'hidden',
+  boxSizing: 'border-box',
+  scrollMarginTop: '80px'
+};
 
+const containerStyle = { 
+  width: '100%', 
+  maxWidth: '1400px', 
+  padding: '0 20px', 
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  height: '100%',
+  transform: 'translateY(-20px)'
+};
+
+const bannerStyle = {
+  width: '100%',
+  maxWidth: '1100px', 
+  margin: '0 auto',
+  borderRadius: '15px',
+  overflow: 'hidden',
+  boxShadow: '0 15px 40px rgba(0,0,0,0.6)'
+};
+
+const titleStyle = { 
+  color: '#fff', 
+  fontSize: '28px',       // Diminuí levemente a fonte
+  margin: '0 0 5px 0'     // Removi margens desnecessárias
+};
+
+const subtitleStyle = { 
+  color: '#ccc', 
+  fontSize: '16px', 
+  margin: '0 0 20px 0'    // Espaço pequeno antes da imagem
+};
+
+const imageStyle = { 
+  width: '100%', 
+  maxHeight: '60vh', 
+  objectFit: 'contain', 
+  height: 'auto', 
+  display: 'block' 
+};
+
+export default Menu;

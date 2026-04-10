@@ -75,11 +75,11 @@
   }
 }
 
-/* Classes para as seções automáticas */
 section {
-  width: 100%;
-  border-top: 1px solid var(--border);
-  padding: 100px 0; /* Espaço para o scroll-behavior não cortar o título */
+  display: block;
+  margin: 0 !important;
+  padding: 0;
+  border: none !important;
 }
 
 /* Estilo específico para a área de contato */
@@ -206,3 +206,11 @@ section {
   }
 }
 
+html {
+  scroll-behavior: smooth; /* Para a rolagem ser suave */
+}
+
+section {
+  /* Ajuste o valor (ex: 80px) para a altura exata da sua Navbar */
+  scroll-margin-top: 80px; 
+}
