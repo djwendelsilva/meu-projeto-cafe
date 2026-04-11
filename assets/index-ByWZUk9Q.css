@@ -1,0 +1,1 @@
+*{box-sizing:border-box;margin:0;padding:0}:root{--nav-height:80px}html{scroll-behavior:smooth}body{background-color:#08060d;width:100%;font-family:Arial,sans-serif}#root{width:100%}section{scroll-margin-top:var(--nav-height)}
