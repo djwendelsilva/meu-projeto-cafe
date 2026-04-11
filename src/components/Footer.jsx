@@ -18,7 +18,7 @@ const Footer = () => {
 
 const footerStyle = {
   width: '100%',
-  backgroundColor: '#111', // 🔥 mais alinhado com seu site escuro
+  backgroundColor: '#111',
   padding: '20px 0',
   borderTop: '1px solid #222',
 };
@@ -30,25 +30,25 @@ const containerStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   gap: '8px',
-  textAlign: 'center'
+  textAlign: 'center',
 };
 
 const copyStyle = {
   fontSize: '14px',
   color: '#aaa',
-  margin: 0
+  margin: 0,
 };
 
 const devStyle = {
   fontSize: '15px',
   color: '#ddd',
-  margin: 0
+  margin: 0,
 };
 
 const emailStyle = {
   fontSize: '14px',
-  color: '#c59d5f', // 🔥 padrão do seu projeto
-  textDecoration: 'none'
+  color: '#c59d5f',
+  textDecoration: 'none',
 };
 
 export default Footer;

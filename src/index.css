@@ -1,16 +1,13 @@
-/* Reset básico */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Variáveis globais */
 :root {
   --nav-height: 80px;
 }
 
-/* Base */
 html {
   scroll-behavior: smooth;
 }
@@ -18,14 +15,13 @@ html {
 body {
   width: 100%;
   background-color: #08060d;
+  font-family: Arial, sans-serif;
 }
 
-/* Container React */
 #root {
   width: 100%;
 }
 
-/* Ajuste para navegação por âncora */
 section {
   scroll-margin-top: var(--nav-height);
 }

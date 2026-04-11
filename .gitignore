@@ -13,6 +13,7 @@ node_modules/
 # Build
 dist/
 dist-ssr/
+.vite/
 
 # Ambiente
 .env
@@ -20,6 +21,10 @@ dist-ssr/
 
 # Local configs
 *.local
+
+# Cache
+*.cache
+coverage/
 
 # Docker
 .dockerignore
