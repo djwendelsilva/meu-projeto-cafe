@@ -1,80 +1,81 @@
-import React from 'react';
-
 const Unidades = () => {
-  // Link do Google Maps que você enviou
-  const mapaLink = "https://google.com";
+  const mapaLink = "https://maps.app.goo.gl/RToUpURxSzeFseTx7";
 
   return (
-    /* O id="unidades" é o que faz o link da Navbar funcionar */
     <section id="unidades" style={sectionStyle}>
-      <h2 style={titleStyle}>Nossas Unidades</h2>
-      
+      <h2 style={titleStyle}>Nossa Unidade</h2>
+
       <div style={cardStyle}>
         <div style={iconStyle}>📍</div>
-        <h3 style={cityStyle}>Vila Mariana</h3>
-        <p style={addressStyle}>Rua Joaquim Távora, 1102<br/>Vila Mariana, São Paulo - SP</p>
-        
-        <a 
-          href={mapaLink} 
-          target="_blank" 
-          rel="noopener noreferrer" 
+
+        <h3 style={cityStyle}>Cidade Nova - RJ</h3>
+
+        <p style={addressStyle}>
+          R. Laura de Araújo<br />
+          Rio de Janeiro - RJ
+        </p>
+
+        <a
+          href={mapaLink}
+          target="_blank"
+          rel="noopener noreferrer"
           style={buttonStyle}
-          onMouseOver={(e) => e.target.style.background = '#333'}
-          onMouseOut={(e) => e.target.style.background = '#000'}
         >
-          Ver no Google Maps
+          Ver no mapa
         </a>
       </div>
     </section>
   );
 };
 
-// --- ESTILOS ---
 const sectionStyle = {
-  padding: '100px 20px',
-  backgroundColor: '#fdfdfd',
-  textAlign: 'center',
-  borderTop: '1px solid #eee'
+  padding: '80px 20px',
+  backgroundColor: '#08060d', // 🔥 alinhado com seu site
+  textAlign: 'center'
 };
 
 const titleStyle = {
-  fontSize: '32px',
-  fontWeight: '800',
-  marginBottom: '40px',
-  color: '#000'
+  fontSize: '28px',
+  fontWeight: '700',
+  marginBottom: '30px',
+  color: '#fff'
 };
 
 const cardStyle = {
-  maxWidth: '400px',
+  maxWidth: '350px',
   margin: '0 auto',
-  padding: '40px',
-  backgroundColor: '#fff',
-  borderRadius: '16px',
-  boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-  border: '1px solid #f0f0f0'
+  padding: '30px',
+  backgroundColor: '#141414',
+  borderRadius: '12px',
+  border: '1px solid #222'
 };
 
-const iconStyle = { fontSize: '40px', marginBottom: '15px' };
+const iconStyle = {
+  fontSize: '36px',
+  marginBottom: '10px'
+};
 
-const cityStyle = { fontSize: '22px', fontWeight: '700', marginBottom: '10px' };
+const cityStyle = {
+  fontSize: '20px',
+  fontWeight: '600',
+  marginBottom: '10px',
+  color: '#fff'
+};
 
 const addressStyle = {
-  fontSize: '16px',
-  color: '#666',
-  lineHeight: '1.5',
-  marginBottom: '25px'
+  fontSize: '14px',
+  color: '#aaa',
+  marginBottom: '20px'
 };
 
 const buttonStyle = {
   display: 'inline-block',
-  backgroundColor: '#000',
-  color: '#fff',
-  padding: '12px 24px',
-  borderRadius: '8px',
+  backgroundColor: '#c59d5f',
+  color: '#000',
+  padding: '10px 20px',
+  borderRadius: '6px',
   textDecoration: 'none',
-  fontWeight: '600',
-  fontSize: '14px',
-  transition: 'background 0.3s'
+  fontWeight: '600'
 };
 
 export default Unidades;

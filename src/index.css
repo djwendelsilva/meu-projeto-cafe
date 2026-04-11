@@ -1,33 +1,31 @@
-/* Reseta margens do navegador e do Vite */
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Variáveis globais */
 :root {
-  width: 100%;
+  --nav-height: 80px;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   background-color: #08060d;
-  overflow-x: hidden; /* Evita barra de rolagem lateral */
 }
 
+/* Container React */
 #root {
   width: 100%;
-  max-width: none !important; /* Remove a trava de 1280px do Vite */
-  margin: 0;
-  padding: 0;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth; /* Para a rolagem ser suave */
-}
-
+/* Ajuste para navegação por âncora */
 section {
-  /* Ajuste o valor (ex: 80px) para a altura exata da sua Navbar */
-  scroll-margin-top: 80px; 
-  scroll-behavior: smooth;
+  scroll-margin-top: var(--nav-height);
 }
