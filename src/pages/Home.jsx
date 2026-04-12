@@ -17,50 +17,54 @@ const Home = () => {
     }
   };
 
-  return (
-    <section style={containerStyle} id="home">
-      <div style={innerStyle}>
-        <div style={contentStyle}>
-          
-          <h1 style={{ ...titleStyle, ...fadeDown1 }}>
-            Sejam bem-vindos ao
-            <br />
-            Cafezinho da Bia.
-          </h1>
+ return (
+  <section style={containerStyle} id="home">
+    {isMobile && <img src={imagemHome} alt="" style={mobileImageStyle} />}
 
-          <p style={{ ...subtitleStyle, ...fadeDown2 }}>
-            Aqui o movimento da rua encontra
-            <br />
-            ótima música e um bom café.
-          </p>
+    <div style={overlayStyle}></div>
 
-          <div style={{ ...buttonsWrapperStyle, ...fadeDown3 }}>
-            <button style={primaryButtonStyle} onClick={handleScrollToMenu}>
-              Ver Cardápio
-            </button>
+    <div style={innerStyle}>
+      <div style={contentStyle}>
+        <h1 style={{ ...titleStyle, ...fadeDown1 }}>
+          Sejam bem-vindos ao
+          <br />
+          Cafezinho da Bia.
+        </h1>
 
-            <button style={secondaryButtonStyle} onClick={handleScrollToContact}>
-              Fazer Pedido
-            </button>
-          </div>
+        <p style={{ ...subtitleStyle, ...fadeDown2 }}>
+          Aqui o movimento da rua encontra
+          <br />
+          ótima música e um bom café.
+        </p>
 
+        <div style={{ ...buttonsWrapperStyle, ...fadeDown3 }}>
+          <button style={primaryButtonStyle} onClick={handleScrollToMenu}>
+            Ver Cardápio
+          </button>
+
+          <button style={secondaryButtonStyle} onClick={handleScrollToContact}>
+            Fazer Pedido
+          </button>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 
 const containerStyle = {
   width: '100%',
-  height: '100vh',
   height: '100dvh',
-  background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${imagemHome})`,
-  backgroundSize: isMobile ? 'auto 100%' : 'cover',
-  backgroundPosition: isMobile ? 'center center' : '12% center',
-  backgroundRepeat: 'no-repeat',
+  position: 'relative',
+  overflow: 'hidden',
   display: 'flex',
   alignItems: 'center',
-  overflow: 'hidden',
+  background: isMobile
+    ? '#08060d'
+    : `url(${imagemHome})`,
+  backgroundSize: 'cover',
+  backgroundPosition: '10% center',
+  backgroundRepeat: 'no-repeat',
 };
 
 const innerStyle = {
@@ -68,6 +72,8 @@ const innerStyle = {
   maxWidth: '1126px',
   margin: '0 auto',
   padding: isMobile ? '0 18px' : '0 20px',
+  position: 'relative',
+  zIndex: 2,
 };
 
 const contentStyle = {
@@ -147,6 +153,23 @@ const fadeDown3 = {
   animationTimingFunction: 'ease',
   animationDelay: '0.6s',
   animationFillMode: 'forwards',
+};
+
+const mobileImageStyle = {
+  position: 'absolute',
+  inset: 0,
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover', // se quiser mostrar mais da arte, depois testamos 'contain'
+  objectPosition: 'center center',
+  zIndex: 0,
+};
+
+const overlayStyle = {
+  position: 'absolute',
+  inset: 0,
+  background: 'rgba(0,0,0,0.45)',
+  zIndex: 1,
 };
 
 export default Home;
