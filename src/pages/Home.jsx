@@ -1,5 +1,4 @@
 import imagemHome from '../assets/Bia.Cafe.png';
-import imagemHome from '../assets/Bia.Cafe.png';
 import imagemHomeMobile from '../assets/Bia.Cafe.mobile.png';
 
 const isMobile = window.innerWidth <= 768;
