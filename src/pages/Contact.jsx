@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const isMobile = window.innerWidth <= 768;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -9,19 +11,40 @@ const Contact = () => {
 
   const [status, setStatus] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!formData.name || !formData.whatsapp || !formData.message) {
-      setStatus('error');
-      return;
-    }
+  // 🔥 validação
+  if (!formData.name || !formData.whatsapp || !formData.message) {
+    setStatus('error');
+    return;
+  }
 
-    setStatus('success');
-    setFormData({
-      name: '',
-      whatsapp: '',
-      message: '',
+  // 🔥 monta mensagem completa
+  const mensagem = `
+Olá! Vim pelo site ☕
+Nome: ${formData.name}
+WhatsApp: ${formData.whatsapp}
+
+Pedido:
+${formData.message}
+  `;
+
+  const numero = '5585999999999'; // 🔥 TROQUE PELO SEU
+
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+  // 🔥 abre WhatsApp
+  window.open(url, '_blank');
+
+  // 🔥 feedback para o usuário
+  setStatus('success');
+
+  // 🔥 limpa o formulário
+  setFormData({
+    name: '',
+    whatsapp: '',
+    message: '',
     });
 
     setTimeout(() => setStatus(''), 4000);
@@ -84,6 +107,18 @@ const Contact = () => {
   );
 };
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const mensagem = `Olá! Vim pelo site e gostaria de fazer um pedido no Cafezinho da Bia ☕`;
+
+  const numero = '5521991902018'; // 🔥 TROQUE PELO SEU
+
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, '_blank');
+};
+
 const sectionStyle = {
   width: '100%',
   minHeight: 'calc(100vh - 80px)', // 🔥 ocupa a tela inteira
@@ -98,7 +133,7 @@ const sectionStyle = {
 
 const containerStyle = {
   width: '100%',
-  maxWidth: '700px',
+  maxWidth: isMobile ? '100%' : '700px',
   textAlign: 'center',
 };
 
@@ -118,9 +153,11 @@ const formStyle = {
   display: 'flex',
   flexDirection: 'column',
   gap: '15px',
+  width: '100%',
 };
 
 const inputStyle = {
+  width: '100%',
   padding: '12px',
   borderRadius: '8px',
   border: '1px solid #333',

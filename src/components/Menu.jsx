@@ -81,9 +81,13 @@ const subtitleStyle = {
 };
 
 const gridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+ display: 'grid',
+  gridTemplateColumns:
+    window.innerWidth <= 768
+      ? '1fr'
+      : 'repeat(auto-fit, minmax(220px, 1fr))',
   gap: '20px',
+  width: '100%',
   maxWidth: '1126px',
   margin: '0 auto',
 };

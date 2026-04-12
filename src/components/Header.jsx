@@ -1,6 +1,8 @@
 import { HashLink as Link } from 'react-router-hash-link';
 import logo from '../assets/logo.png';
 
+const isMobile = window.innerWidth <= 768;
+
 const Header = () => {
   return (
     <header style={headerStyle}>
@@ -37,10 +39,11 @@ const Header = () => {
 };
 
 const headerStyle = {
-  height: '80px',
-  position: 'sticky',
+  height: isMobile ? '70px' : '80px',
+  position: 'fixed',
   top: 0,
-  zIndex: 1000,
+  left: 0,
+  zIndex: 9999,
   width: '100%',
   backgroundColor: '#08060d',
   borderBottom: '1px solid #1f1f1f',
@@ -50,7 +53,7 @@ const containerStyle = {
   maxWidth: '1126px',
   height: '100%',
   margin: '0 auto',
-  padding: '0 20px',
+  padding: isMobile ? '10px 14px' : '12px 20px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -58,24 +61,24 @@ const containerStyle = {
 
 const logoLinkStyle = {
   textDecoration: 'none',
+  display: 'inline-block',
 };
 
 const brandStyle = {
   display: 'flex',
   alignItems: 'center',
-  gap: '10px',
+  gap: isMobile ? '8px' : '10px',
 };
 
 const logoStyle = {
-  height: '38px',
-  width: '38px',
-  objectFit: 'contain',
+  height: isMobile ? '34px' : '70px',
+  width: 'auto',
   display: 'block',
 };
 
 const logoTextStyle = {
   color: '#fff',
-  fontSize: '16px',
+  fontSize: isMobile ? '14px' : '18px',
   fontWeight: '600',
   lineHeight: 1,
   letterSpacing: '0.3px',
@@ -84,16 +87,18 @@ const logoTextStyle = {
 const navListStyle = {
   display: 'flex',
   alignItems: 'center',
-  gap: '22px',
+  gap: isMobile ? '10px' : '20px',
   listStyle: 'none',
   margin: 0,
   padding: 0,
+  flexWrap: isMobile ? 'wrap' : 'nowrap',
+  justifyContent: 'flex-end',
 };
 
 const linkStyle = {
   textDecoration: 'none',
   color: '#fff',
-  fontSize: '16px',
+  fontSize: isMobile ? '13px' : '16px',
   fontWeight: '600',
   letterSpacing: '0.3px',
 };
