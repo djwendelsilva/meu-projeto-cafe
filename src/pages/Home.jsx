@@ -1,7 +1,20 @@
-import imagemHome from '../assets/Bia.Cafe.png';
+import { useState, useEffect } from 'react';
+import imagemHome from '../assets/bia.cafe.png';
 import imagemHomeMobile from '../assets/bia.cafe.mobile.png';
 
-const isMobile = true;
+const Home = () => {
+
+  // 🔥 COLOCA AQUI
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  },
 
 const Home = () => {
   const handleScrollToMenu = () => {
