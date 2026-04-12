@@ -1,4 +1,6 @@
 import imagemHome from '../assets/Bia.Cafe.png';
+import imagemHome from '../assets/Bia.Cafe.png';
+import imagemHomeMobile from '../assets/Bia.Cafe.mobile.png';
 
 const isMobile = window.innerWidth <= 768;
 
@@ -55,15 +57,14 @@ const Home = () => {
 const containerStyle = {
   width: '100%',
   height: '100dvh',
-  position: 'relative',
-  overflow: 'hidden',
   display: 'flex',
   alignItems: 'center',
-  background: isMobile
-    ? '#08060d'
-    : `url(${imagemHome})`,
+  position: 'relative',
+  overflow: 'hidden',
+
+  backgroundImage: `url(${isMobile ? imagemHomeMobile : imagemHome})`,
   backgroundSize: 'cover',
-  backgroundPosition: '10% center',
+  backgroundPosition: isMobile ? 'center center' : '10% center',
   backgroundRepeat: 'no-repeat',
 };
 
