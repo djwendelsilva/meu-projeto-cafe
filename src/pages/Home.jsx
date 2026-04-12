@@ -1,7 +1,7 @@
 import imagemHome from '../assets/Bia.Cafe.png';
 import imagemHomeMobile from '../assets/bia.cafe.mobile.png';
 
-const isMobile = window.innerWidth <= 768;
+const isMobile = true;
 
 const Home = () => {
   const handleScrollToMenu = () => {
