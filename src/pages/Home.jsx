@@ -55,7 +55,7 @@ const containerStyle = {
   height: '100vh',
   height: '100dvh',
   background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${imagemHome})`,
-  backgroundSize: 'cover',
+  backgroundSize: isMobile ? 'auto 100%' : 'cover',
   backgroundPosition: isMobile ? 'center center' : '12% center',
   backgroundRepeat: 'no-repeat',
   display: 'flex',
