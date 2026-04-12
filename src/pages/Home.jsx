@@ -32,8 +32,8 @@ const Home = () => {
     position: 'relative',
     overflow: 'hidden',
     backgroundImage: `url(${isMobile ? imagemHomeMobile : imagemHome})`,
-    backgroundSize: 'cover',
-    backgroundPosition: isMobile ? 'center center' : '10% center',
+    backgroundSize: isMobile ? 'cover' : 'cover',
+    backgroundPosition: isMobile ? 'center bottom' : '10% center',
     backgroundRepeat: 'no-repeat',
   };
 
@@ -42,15 +42,15 @@ const Home = () => {
     maxWidth: '1126px',
     margin: '0 auto',
     padding: isMobile ? '0 18px' : '0 20px',
-    position: 'relative',
     zIndex: 2,
   };
 
-  const contentStyle = {
-    maxWidth: isMobile ? '100%' : '520px',
-    textAlign: 'left',
-    transform: 'translateY(-10px)',
-  };
+   const contentStyle = {
+     maxWidth: isMobile ? '90%' : '520px',
+     margin: isMobile ? '0 auto' : '0',
+     textAlign: isMobile ? 'center' : 'left',
+     transform: isMobile ? 'translateY(-18vh)' : 'translateY(-10px)',
+};
 
   const titleStyle = {
     color: '#fff',
@@ -64,18 +64,18 @@ const Home = () => {
   const subtitleStyle = {
     color: 'rgba(255,255,255,0.9)',
     fontSize: isMobile ? '18px' : 'clamp(18px, 2.5vw, 22px)',
-    marginBottom: '30px',
+    marginBottom: isMobile ? '28px' : '30px',
     textShadow: '0 2px 10px rgba(0,0,0,0.6)',
   };
 
   const buttonsWrapperStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    gap: '12px',
-    marginTop: '10px',
-    transform: isMobile ? 'none' : 'translateX(5vw)',
-  };
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: isMobile ? 'center' : 'flex-start',
+  gap: isMobile ? '12px' : '16px',
+  marginTop: isMobile ? '10px' : '20px',
+  transform: isMobile ? 'none' : 'translateX(5vw)',
+};
 
   const primaryButtonStyle = {
     padding: isMobile ? '10px 18px' : '12px 24px',
@@ -88,14 +88,13 @@ const Home = () => {
   };
 
   const secondaryButtonStyle = {
-    padding: isMobile ? '10px 18px' : '12px 24px',
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    color: '#fff',
-    border: '1px solid rgba(255,255,255,0.5)',
-    borderRadius: '6px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    backdropFilter: 'blur(4px)',
+  padding: isMobile ? '10px 18px' : '12px 24px',
+  backgroundColor: '#25D366',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '6px',
+  fontWeight: '600',
+  cursor: 'pointer',
   };
 
   const fadeBase = {
@@ -125,6 +124,22 @@ const Home = () => {
     animationFillMode: 'forwards',
   };
 
+  const handleWhatsApp = () => {
+  const numero = '5585999999999'; // 🔥 coloque seu número real
+
+  const mensagem = `Olá! Vim pelo site do Cafezinho da Bia ☕
+Gostaria de fazer um pedido.
+
+Nome:
+Pedido:
+Forma de pagamento:
+Retirada ou entrega?`;
+
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, '_blank');
+};
+
   return (
     <section style={containerStyle} id="home">
       <div style={innerStyle}>
@@ -147,7 +162,7 @@ const Home = () => {
             </button>
 
             <button style={secondaryButtonStyle} onClick={handleScrollToContact}>
-              Fazer Pedido
+              Fazer Pedido no WhasApp
             </button>
           </div>
         </div>
