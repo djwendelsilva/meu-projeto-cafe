@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 82px;
+  height: 88px; /* 🔥 aumentamos um pouco */
   z-index: 1200;
   background: rgba(8, 6, 13, 0.72);
   backdrop-filter: blur(12px);
@@ -28,19 +28,20 @@
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
+/* 🔥 AQUI AUMENTA A LOGO */
 .header-logo {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
 }
 
 .header-logo-text {
   color: #fff;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   letter-spacing: -0.2px;
 }
 
@@ -81,36 +82,26 @@
   width: 100%;
 }
 
-@media (max-width: 900px) {
-  .header-container {
-    padding: 0 16px;
-  }
-
-  .header-nav-list {
-    gap: 16px;
-  }
-}
-
+/* 📱 MOBILE */
 @media (max-width: 768px) {
   .header {
-    height: 78px;
+    height: 96px;
   }
 
   .header-container {
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-    gap: 8px;
     padding: 8px 14px;
+    gap: 8px;
   }
 
   .header-brand {
     gap: 10px;
   }
 
+  /* 🔥 LOGO MENOR NO MOBILE */
   .header-logo {
-    width: 38px;
-    height: 38px;
+    width: 72px;
+    height: 44px;
   }
 
   .header-logo-text {
