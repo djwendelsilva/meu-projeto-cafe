@@ -1,21 +1,25 @@
-import Header from './components/Header';
-import Features from './components/Features';
-import Menu from './components/Menu';
-import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
-import Home from './pages/Home';
-import Contact from './pages/Contact';
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+
+import Home from "./pages/Home";
+import Menu from "./components/sections/Menu";
+import Unidades from "./components/sections/Unidades";
+import Contact from "./pages/Contact";
+
+import WhatsAppButton from "./components/ui/WhatsAppButton";
 
 function App() {
   return (
     <>
       <Header />
+
       <main>
         <Home />
-        <Features />
         <Menu />
+        <Unidades />
         <Contact />
       </main>
+
       <Footer />
       <WhatsAppButton />
     </>

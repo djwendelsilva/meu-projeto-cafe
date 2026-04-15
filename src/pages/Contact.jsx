@@ -1,67 +1,58 @@
-import { useState } from 'react';
-
-const isMobile = window.innerWidth <= 768;
+import { useState } from 'react'
+import './Contact.css'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     whatsapp: '',
     message: '',
-  });
+  })
 
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('')
 
- const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-  // 🔥 validação
-  if (!formData.name || !formData.whatsapp || !formData.message) {
-    setStatus('error');
-    return;
-  }
+    if (!formData.name || !formData.whatsapp || !formData.message) {
+      setStatus('error')
+      return
+    }
 
-  // 🔥 monta mensagem completa
-  const mensagem = `
-Olá! Vim pelo site ☕
+    const mensagem = `Olá! Vim pelo site ☕
 Nome: ${formData.name}
 WhatsApp: ${formData.whatsapp}
 
 Pedido:
-${formData.message}
-  `;
+${formData.message}`
 
-  const numero = '5585999999999'; // 🔥 TROQUE PELO SEU
+    const numero = '5521991902018'
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
 
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank')
 
-  // 🔥 abre WhatsApp
-  window.open(url, '_blank');
+    setStatus('success')
 
-  // 🔥 feedback para o usuário
-  setStatus('success');
+    setFormData({
+      name: '',
+      whatsapp: '',
+      message: '',
+    })
 
-  // 🔥 limpa o formulário
-  setFormData({
-    name: '',
-    whatsapp: '',
-    message: '',
-    });
-
-    setTimeout(() => setStatus(''), 4000);
-  };
+    setTimeout(() => setStatus(''), 4000)
+  }
 
   return (
-    <section id="contact" style={sectionStyle}>
-      <div style={containerStyle}>
-        <h2 style={titleStyle}>Faça seu Pedido</h2>
+    <section id="contact" className="contact-section">
+      <div className="contact-container">
+        <h2 className="contact-title">Faça seu Pedido</h2>
 
-        <p style={subtitleStyle}>
+        <p className="contact-subtitle">
           Mande sua lista de delícias e Bia prepara para você!
         </p>
 
-        <form onSubmit={handleSubmit} style={formStyle}>
+        <form onSubmit={handleSubmit} className="contact-form">
           <input
-            style={inputStyle}
+            className="contact-input"
             type="text"
             placeholder="Seu nome completo"
             value={formData.name}
@@ -71,7 +62,7 @@ ${formData.message}
           />
 
           <input
-            style={inputStyle}
+            className="contact-input"
             type="tel"
             placeholder="WhatsApp com DDD"
             value={formData.whatsapp}
@@ -81,7 +72,7 @@ ${formData.message}
           />
 
           <textarea
-            style={textareaStyle}
+            className="contact-textarea"
             placeholder="Descreva seu pedido..."
             value={formData.message}
             onChange={(e) =>
@@ -89,103 +80,24 @@ ${formData.message}
             }
           />
 
-          <button type="submit" style={buttonStyle}>
+          <button type="submit" className="contact-button">
             Enviar Pedido
           </button>
         </form>
 
-        <div style={statusStyle}>
+        <div className="contact-status">
           {status === 'error' && (
-            <p style={{ color: '#ff4d4d' }}>Preencha todos os campos.</p>
+            <p className="contact-status-error">Preencha todos os campos.</p>
           )}
           {status === 'success' && (
-            <p style={{ color: '#2ecc71' }}>Pedido enviado com sucesso.</p>
+            <p className="contact-status-success">
+              Pedido enviado com sucesso.
+            </p>
           )}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  const mensagem = `Olá! Vim pelo site e gostaria de fazer um pedido no Cafezinho da Bia ☕`;
-
-  const numero = '5521991902018'; // 🔥 TROQUE PELO SEU
-
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-
-  window.open(url, '_blank');
-};
-
-const sectionStyle = {
-  width: '100%',
-  minHeight: 'calc(100vh - 80px)', // 🔥 ocupa a tela inteira
-  backgroundColor: '#08060d',
-  padding: '40px 20px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'flex-start', // 🔥 igual ao Menu
-  paddingTop: '80px'
-};
-
-const containerStyle = {
-  width: '100%',
-  maxWidth: isMobile ? '100%' : '700px',
-  textAlign: 'center',
-};
-
-const titleStyle = {
-  color: '#fff',
-  fontSize: '32px',
-  marginBottom: '12px',
-};
-
-const subtitleStyle = {
-  color: '#ccc',
-  marginBottom: '30px',
-  fontSize: '18px',
-};
-
-const formStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '15px',
-  width: '100%',
-};
-
-const inputStyle = {
-  width: '100%',
-  padding: '12px',
-  borderRadius: '8px',
-  border: '1px solid #333',
-  background: '#1a1a1a',
-  color: '#fff',
-  fontSize: '15px',
-};
-
-const textareaStyle = {
-  ...inputStyle,
-  minHeight: '120px',
-  resize: 'none',
-};
-
-const buttonStyle = {
-  background: '#c59d5f',
-  color: '#000',
-  border: 'none',
-  padding: '14px',
-  borderRadius: '8px',
-  cursor: 'pointer',
-  fontWeight: '700',
-  fontSize: '16px',
-};
-
-const statusStyle = {
-  marginTop: '20px',
-  minHeight: '24px',
-};
-
-export default Contact;
+export default Contact

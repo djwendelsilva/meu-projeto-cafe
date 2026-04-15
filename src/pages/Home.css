@@ -1,0 +1,235 @@
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08060d;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1126px;
+  margin: 0 auto;
+  padding: 80px 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 520px;
+}
+
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border: 1px solid rgba(197, 157, 95, 0.35);
+  border-radius: 999px;
+  background-color: rgba(197, 157, 95, 0.08);
+  color: #dfb46b;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.hero-text h1 {
+  color: #fff;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-text p {
+  color: #ccc;
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 460px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.btn-primary,
+.btn-secondary {
+  min-width: 200px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #c59d5f;
+  color: #111;
+}
+
+.btn-primary:hover {
+  background-color: #dfb46b;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #25d366;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #1fb85a;
+  transform: translateY(-2px);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-scene {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 360px;
+  min-height: 420px;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(223, 180, 107, 0.22) 0%,
+    rgba(223, 180, 107, 0.12) 32%,
+    rgba(223, 180, 107, 0.04) 58%,
+    rgba(223, 180, 107, 0) 75%
+  );
+  filter: blur(16px);
+  z-index: 1;
+}
+
+.hero-img {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  transform: translateY(0) scale(1);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.hero-ground {
+  position: absolute;
+  bottom: 36px;
+  width: 220px;
+  height: 26px;
+  background: radial-gradient(
+    ellipse,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.22) 48%,
+    rgba(0, 0, 0, 0.06) 72%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: blur(10px);
+  z-index: 2;
+}
+
+.hero-image-scene:hover .hero-img {
+  transform: translateY(-4px) scale(1.02);
+  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 6px 12px rgba(0, 0, 0, 0.28));
+}
+
+.hero-image-scene:hover .hero-glow {
+  opacity: 1;
+  transform: scale(1.04);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.hero-image-scene:hover .hero-ground {
+  width: 235px;
+  opacity: 0.95;
+  transition: width 0.35s ease, opacity 0.35s ease;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 18px 40px;
+    gap: 28px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+
+  .hero-text p {
+    font-size: 17px;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-width: 220px;
+  }
+
+  .hero-image-scene {
+    min-width: auto;
+    min-height: 300px;
+  }
+
+  .hero-glow {
+    width: 210px;
+    height: 210px;
+  }
+
+  .hero-img {
+    max-width: 240px;
+  }
+
+  .hero-ground {
+    width: 170px;
+    height: 20px;
+    bottom: 28px;
+  }
+
+  .hero-image-scene:hover .hero-ground {
+    width: 180px;
+  }
+}
