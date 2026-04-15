@@ -28,10 +28,10 @@ Gostaria de fazer um pedido.`
         <div className="hero-text">
           <span className="hero-badge">Street Coffee</span>
 
-          <h1>Peça antes. Pegue na rua. Sem fila.</h1>
+          <h1>Peça antes e pegue com a Bia sem fila.</h1>
 
           <p>
-            Escolha no site, mande no WhatsApp e retire sem esperar.
+            Agora você pode escolher no site e retire sem esperar.
           </p>
 
           <div className="hero-buttons">

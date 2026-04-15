@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './Menu.css'
 
 const numero = '5521991902018'
@@ -58,6 +58,49 @@ const Menu = () => {
   const [paymentMethod, setPaymentMethod] = useState('pix')
   const [customerName, setCustomerName] = useState('')
   const [notes, setNotes] = useState('')
+  const [pixCopied, setPixCopied] = useState(false)
+  const [cartPulse, setCartPulse] = useState(false)
+  const [addedItemName, setAddedItemName] = useState('')
+  const [mobileCartOpen, setMobileCartOpen] = useState(false)
+
+  const totalItems = useMemo(() => {
+    return cart.reduce((acc, item) => acc + item.quantity, 0)
+  }, [cart])
+
+  const total = useMemo(() => {
+    return cart.reduce((acc, item) => acc + item.numericPrice * item.quantity, 0)
+  }, [cart])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMobileCartOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const triggerCartPulse = () => {
+    setCartPulse(false)
+
+    setTimeout(() => {
+      setCartPulse(true)
+
+      setTimeout(() => {
+        setCartPulse(false)
+      }, 450)
+    }, 10)
+  }
+
+  const triggerAddedFeedback = (itemName) => {
+    setAddedItemName(itemName)
+
+    setTimeout(() => {
+      setAddedItemName('')
+    }, 1000)
+  }
 
   const addItemToCart = (item) => {
     setCart((prevCart) => {
@@ -80,6 +123,9 @@ const Menu = () => {
         },
       ]
     })
+
+    triggerCartPulse()
+    triggerAddedFeedback(item.name)
   }
 
   const increaseQuantity = (itemName) => {
@@ -90,6 +136,8 @@ const Menu = () => {
           : item
       )
     )
+
+    triggerCartPulse()
   }
 
   const decreaseQuantity = (itemName) => {
@@ -108,9 +156,18 @@ const Menu = () => {
     setCart((prevCart) => prevCart.filter((item) => item.name !== itemName))
   }
 
-  const total = useMemo(() => {
-    return cart.reduce((acc, item) => acc + item.numericPrice * item.quantity, 0)
-  }, [cart])
+  const handleCopyPixKey = async () => {
+    try {
+      await navigator.clipboard.writeText(pixKey)
+      setPixCopied(true)
+
+      setTimeout(() => {
+        setPixCopied(false)
+      }, 2000)
+    } catch {
+      setPixCopied(false)
+    }
+  }
 
   const paymentText =
     paymentMethod === 'pix'
@@ -141,7 +198,7 @@ Total: ${formatPrice(total)}
 Pagamento: ${paymentText}
 ${
   paymentMethod === 'pix'
-    ? 'Pagamento no Pix, por favor enviar o comprovante.'
+    ? '\nPagamento no Pix, por favor enviar o comprovante.'
     : ''
 }
 
@@ -169,36 +226,60 @@ ${notes || 'Nenhuma.'}`
               <h3 className="menu-category-title">{category.category}</h3>
 
               <ul className="menu-list">
-                {category.items.map((item) => (
-                  <li className="menu-item" key={item.name}>
-                    <div className="menu-item-info">
-                      <span className="menu-item-name">{item.name}</span>
+                {category.items.map((item) => {
+                  const isAdded = addedItemName === item.name
 
-                      {item.tag && (
-                        <span className="menu-tag">{item.tag}</span>
-                      )}
-                    </div>
+                  return (
+                    <li className="menu-item" key={item.name}>
+                      <div className="menu-item-info">
+                        <span className="menu-item-name">{item.name}</span>
 
-                    <div className="menu-item-actions">
-                      <span className="menu-price">{item.price}</span>
+                        {item.tag && (
+                          <span className="menu-tag">{item.tag}</span>
+                        )}
+                      </div>
 
-                      <button
-                        type="button"
-                        className="menu-add-button"
-                        onClick={() => addItemToCart(item)}
-                      >
-                        Adicionar
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                      <div className="menu-item-actions">
+                        <span className="menu-price">{item.price}</span>
+
+                        <button
+                          type="button"
+                          className={`menu-add-button ${isAdded ? 'added' : ''}`}
+                          onClick={() => addItemToCart(item)}
+                        >
+                          {isAdded ? 'Adicionado' : 'Adicionar'}
+                        </button>
+                      </div>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}
         </div>
 
-        <div className="menu-order-box">
-          <h3 className="menu-order-title">Seu pedido</h3>
+        <div className="menu-mobile-cart-bar">
+          <button
+            type="button"
+            className={`menu-mobile-cart-button ${cartPulse ? 'pulse' : ''}`}
+            onClick={() => setMobileCartOpen((prev) => !prev)}
+          >
+            <span className="menu-mobile-cart-label">Seu pedido</span>
+            <span className="menu-mobile-cart-items">
+              {totalItems} {totalItems === 1 ? 'item' : 'itens'}
+            </span>
+            <span className="menu-mobile-cart-total">{formatPrice(total)}</span>
+          </button>
+        </div>
+
+        <div className={`menu-order-box ${mobileCartOpen ? 'mobile-open' : ''}`}>
+          <div className="menu-order-header">
+            <h3 className="menu-order-title">Seu pedido</h3>
+
+            <span className={`menu-order-count ${cartPulse ? 'pulse' : ''}`}>
+              {totalItems} {totalItems === 1 ? 'item' : 'itens'}
+            </span>
+          </div>
 
           {cart.length === 0 ? (
             <p className="menu-empty-cart">Nenhum item ainda.</p>
@@ -312,9 +393,7 @@ ${notes || 'Nenhuma.'}`
 
                 <div className="menu-summary-row">
                   <span className="menu-summary-label">Itens</span>
-                  <span className="menu-summary-value">
-                    {cart.reduce((acc, item) => acc + item.quantity, 0)}
-                  </span>
+                  <span className="menu-summary-value">{totalItems}</span>
                 </div>
 
                 <div className="menu-summary-row">
@@ -326,6 +405,15 @@ ${notes || 'Nenhuma.'}`
                   <div className="menu-pix-box">
                     <span className="menu-pix-label">Chave Pix</span>
                     <span className="menu-pix-key">{pixKey}</span>
+
+                    <button
+                      type="button"
+                      className={`menu-copy-pix-button ${pixCopied ? 'copied' : ''}`}
+                      onClick={handleCopyPixKey}
+                    >
+                      {pixCopied ? 'Copiado!' : 'Copiar'}
+                    </button>
+
                     <p className="menu-pix-note">
                       Pagamento no Pix, por favor enviar o comprovante.
                     </p>
