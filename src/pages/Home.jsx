@@ -15,7 +15,12 @@ const Home = () => {
     const numero = '5521991902018'
 
     const mensagem = `Olá! Vim pelo site do Cafezinho da Bia ☕
-Gostaria de fazer um pedido.`
+Gostaria de fazer um pedido.
+
+Nome:
+Pedido:
+Forma de pagamento:
+Retirada no local.`
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, '_blank')
@@ -24,14 +29,13 @@ Gostaria de fazer um pedido.`
   return (
     <section id="home" className="hero">
       <div className="hero-container">
-
         <div className="hero-text">
           <span className="hero-badge">Street Coffee</span>
 
           <h1>Peça antes e pegue com a Bia sem fila.</h1>
 
           <p>
-            Agora você pode escolher no site e retire sem esperar.
+            Escolha no site, envie no WhatsApp e retire seu café sem esperar.
           </p>
 
           <div className="hero-buttons">
@@ -61,7 +65,6 @@ Gostaria de fazer um pedido.`
             <div className="hero-ground"></div>
           </div>
         </div>
-
       </div>
     </section>
   )

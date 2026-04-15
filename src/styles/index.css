@@ -5,7 +5,7 @@
 }
 
 :root {
-  --nav-height: 80px;
+  --nav-height: 82px;
 }
 
 html {
@@ -33,6 +33,6 @@ section {
 
 @media (max-width: 768px) {
   :root {
-    --nav-height: 76px;
+    --nav-height: 78px;
   }
 }

@@ -22,7 +22,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <nav>
+        <nav className="header-nav">
           <ul className="header-nav-list">
             <li>
               <Link smooth to="#home" className="header-link">
