@@ -177,6 +177,11 @@ const Menu = () => {
   const handleSendOrder = () => {
     if (cart.length === 0) return
 
+    if (!customerName.trim()) {
+      alert('Digite o nome do cliente antes de enviar o pedido.')
+      return
+    }
+
     const itemsText = cart
       .map(
         (item) =>
@@ -188,7 +193,7 @@ const Menu = () => {
 
     const mensagem = `Olá! Quero fazer o seguinte pedido no Cafezinho da Bia ☕
 
-Cliente: ${customerName || 'Não informado'}
+Cliente: ${customerName}
 
 Pedido:
 ${itemsText}
