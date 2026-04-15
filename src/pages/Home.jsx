@@ -29,7 +29,9 @@ Retirada no local.`
   return (
     <section id="home" className="hero">
       <div className="hero-container">
+        
         <div className="hero-text">
+
           <span className="hero-badge">Street Coffee</span>
 
           <h1>Peça antes e pegue com a Bia sem fila.</h1>
@@ -47,10 +49,12 @@ Retirada no local.`
               Pedir no WhatsApp
             </button>
           </div>
+
         </div>
 
         <div className="hero-image">
           <div className="hero-image-scene">
+
             <div className="hero-glow"></div>
 
             <picture>
@@ -63,8 +67,10 @@ Retirada no local.`
             </picture>
 
             <div className="hero-ground"></div>
+
           </div>
         </div>
+
       </div>
     </section>
   )
