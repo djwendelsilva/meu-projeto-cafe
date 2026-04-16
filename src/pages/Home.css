@@ -1,3 +1,5 @@
+/* src/pages/Home.css */
+
 .home {
   min-height: 100vh;
   display: flex;
@@ -39,20 +41,12 @@
   color: var(--accent);
 }
 
-.home-copy {
-  margin-bottom: 26px;
-}
-
-.home-copy p {
+.home-text p {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.6;
   max-width: 500px;
-  margin-bottom: 8px;
-}
-
-.home-copy p:last-child {
-  margin-bottom: 0;
+  margin-bottom: 26px;
 }
 
 .home-actions {
@@ -94,6 +88,7 @@
   backdrop-filter: blur(10px);
 }
 
+/* desktop aparece por padrão */
 .hero-desktop-img {
   display: block;
   width: 100%;
@@ -119,21 +114,10 @@
   animation: fadeImageSmooth 1s ease forwards;
 }
 
-.delay-1 {
-  animation-delay: 0.1s;
-}
-
-.delay-2 {
-  animation-delay: 0.25s;
-}
-
-.delay-3 {
-  animation-delay: 0.45s;
-}
-
-.delay-4 {
-  animation-delay: 0.65s;
-}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.65s; }
 
 @keyframes fadeUpSmooth {
   to {
@@ -177,32 +161,28 @@
   }
 
   .home-text h1 {
-    font-size: clamp(42px, 8vw, 56px);
-    line-height: 1.04;
-    margin-bottom: 16px;
-    max-width: 14ch;
+    font-size: clamp(36px, 7vw, 48px);
+    line-height: 1.06;
+    margin-bottom: 14px;
+    max-width: 18ch;
   }
 
-  .home-copy {
-    margin-bottom: 22px;
-  }
-
-  .home-copy p {
+  .home-text p {
     margin-inline: auto;
-    max-width: 42ch;
-    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 46ch;
+    font-size: 15px;
     line-height: 1.65;
-    margin-bottom: 6px;
   }
 
   .home-actions {
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   .home-actions .btn {
-    min-width: 200px;
-    padding: 14px 20px;
+    min-width: 180px;
+    padding: 14px 18px;
     text-align: center;
   }
 
@@ -211,14 +191,14 @@
   }
 
   .home-glow {
-    top: 24px;
+    top: 18px;
     width: 220px;
     height: 220px;
     filter: blur(70px);
   }
 
   .home-image-box {
-    max-width: 430px;
+    max-width: 360px;
     width: 100%;
     aspect-ratio: 4 / 5;
     margin: 0 auto;
@@ -227,7 +207,7 @@
 
   .hero-desktop-img {
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 30%;
   }
 }
 
@@ -235,17 +215,17 @@
 @media (max-width: 480px) {
   .home {
     min-height: auto;
-    padding-top: 88px;
-    padding-bottom: 20px;
+    padding-top: 84px;
+    padding-bottom: 18px;
   }
 
   .home .container {
     width: 100%;
-    padding: 0 16px;
+    padding: 0 14px;
   }
 
   .home-grid {
-    gap: 20px;
+    gap: 18px;
   }
 
   .home-text {
@@ -253,54 +233,45 @@
     max-width: 100%;
     align-items: center;
     text-align: center;
+    padding-top: 0;
   }
 
   .home-badge {
-    margin-bottom: 14px;
-    padding: 7px 16px;
-    font-size: 12px;
+    margin-bottom: 12px;
+    padding: 7px 14px;
+    font-size: 11px;
     transform: none;
   }
 
   .home-text h1 {
-    font-size: 34px;
-    line-height: 1.04;
+    font-size: 26px;
+    line-height: 1.08;
     max-width: 12ch;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
-  .home-copy {
-    margin-bottom: 22px;
-  }
-
-  .home-copy p {
-    font-size: 15px;
+  .home-text p {
+    font-size: 13px;
     line-height: 1.7;
     max-width: 31ch;
-    margin-bottom: 6px;
-  }
-
-  .home-copy p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 18px;
+    padding: 0;
   }
 
   .home-actions {
     width: 100%;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
-    flex-wrap: nowrap;
   }
 
   .home-actions .btn {
-    width: auto;
+    width: 100%;
+    max-width: 250px;
     min-width: 0;
-    max-width: none;
-    padding: 14px 18px;
+    padding: 13px 16px;
     font-size: 15px;
     white-space: nowrap;
-    flex: 0 0 auto;
   }
 
   .home-image-wrap {
@@ -310,22 +281,22 @@
   }
 
   .home-glow {
-    top: 34px;
-    width: 180px;
-    height: 180px;
-    filter: blur(56px);
+    top: 40px;
+    width: 190px;
+    height: 190px;
+    filter: blur(58px);
   }
 
   .home-image-box {
     width: 100%;
-    max-width: 420px;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
-    border-radius: 18px;
+    max-width: 100%;
+    aspect-ratio: auto;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    border-radius: 0;
   }
 
   .hero-desktop-img {
@@ -335,8 +306,11 @@
   .hero-mobile-img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 28%;
+    max-width: 340px;
+    margin: 0 auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+    border-radius: 18px;
   }
 }
