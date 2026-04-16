@@ -48,13 +48,17 @@ function Home() {
           <div className="home-glow"></div>
 
           <div className="home-image-box">
-            <picture>
-              <source media="(max-width: 480px)" srcSet={heroMobile} />
-              <img
-                src={heroDesktop}
-                alt="Carrinho de café do Cafezinho da Bia"
-              />
-            </picture>
+            <img
+              src={heroDesktop}
+              alt="Carrinho de café do Cafezinho da Bia"
+              className="hero-desktop-img"
+            />
+
+            <img
+              src={heroMobile}
+              alt="Carrinho de café do Cafezinho da Bia"
+              className="hero-mobile-img"
+            />
           </div>
         </div>
       </div>
