@@ -39,12 +39,20 @@
   color: var(--accent);
 }
 
-.home-text p {
+.home-copy {
+  margin-bottom: 26px;
+}
+
+.home-copy p {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.6;
   max-width: 500px;
-  margin-bottom: 26px;
+  margin-bottom: 8px;
+}
+
+.home-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .home-actions {
@@ -111,10 +119,21 @@
   animation: fadeImageSmooth 1s ease forwards;
 }
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.25s; }
-.delay-3 { animation-delay: 0.45s; }
-.delay-4 { animation-delay: 0.65s; }
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.25s;
+}
+
+.delay-3 {
+  animation-delay: 0.45s;
+}
+
+.delay-4 {
+  animation-delay: 0.65s;
+}
 
 @keyframes fadeUpSmooth {
   to {
@@ -164,12 +183,16 @@
     max-width: 14ch;
   }
 
-  .home-text p {
-    margin-inline: auto;
+  .home-copy {
     margin-bottom: 22px;
+  }
+
+  .home-copy p {
+    margin-inline: auto;
     max-width: 42ch;
     font-size: 16px;
     line-height: 1.65;
+    margin-bottom: 6px;
   }
 
   .home-actions {
@@ -239,7 +262,6 @@
     transform: none;
   }
 
-  /* MAIS PARECIDO COM DESKTOP */
   .home-text h1 {
     font-size: 34px;
     line-height: 1.04;
@@ -247,15 +269,21 @@
     margin-bottom: 16px;
   }
 
-  .home-text p {
-    font-size: 15px;
-    line-height: 1.7;
-    max-width: 33ch;
+  .home-copy {
     margin-bottom: 22px;
-    padding: 0;
   }
 
-  /* BOTÕES LADO A LADO COMO NO DESKTOP */
+  .home-copy p {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 31ch;
+    margin-bottom: 6px;
+  }
+
+  .home-copy p:last-child {
+    margin-bottom: 0;
+  }
+
   .home-actions {
     width: 100%;
     flex-direction: row;
@@ -288,7 +316,6 @@
     filter: blur(56px);
   }
 
-  /* IMAGEM EM CARD COMO NO DESKTOP */
   .home-image-box {
     width: 100%;
     max-width: 420px;

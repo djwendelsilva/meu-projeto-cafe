@@ -20,14 +20,22 @@ function Home() {
           </span>
 
           <h1 className="fade-up delay-2">
-            O café que combina
-            <span> rapidez, sabor e carinho.</span>
+            O café que
+            <br />
+            combina
+            <span>
+              {' '}
+              rapidez,
+              <br />
+              sabor e carinho.
+            </span>
           </h1>
 
-          <p className="fade-up delay-3">
-            Aqui o movimento da rua encontra ótima música, atendimento acolhedor
-            e um café feito para quem gosta de praticidade sem abrir mão do sabor.
-          </p>
+          <div className="home-copy fade-up delay-3">
+            <p>Aqui o movimento da rua encontra ótima música,</p>
+            <p>atendimento acolhedor e um café feito</p>
+            <p>para quem gosta de praticidade sem abrir mão do sabor.</p>
+          </div>
 
           <div className="home-actions fade-up delay-4">
             <a href="#menu" className="btn btn-primary">
