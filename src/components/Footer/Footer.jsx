@@ -18,7 +18,7 @@ function Footer() {
       </div>
 
       <div className="container footer-bottom">
-        <p>© 2026 Cafezinho da Bia. Todos os direitos reservados.</p>
+        <p>© 2026 Por WS. Todos os direitos reservados.</p>
       </div>
     </footer>
   )
