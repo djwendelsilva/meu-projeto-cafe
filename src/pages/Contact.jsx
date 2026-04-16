@@ -1,99 +1,94 @@
-import { useState } from 'react'
 import './Contact.css'
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    whatsapp: '',
-    message: '',
-  })
+function Contact() {
+  const whatsappMessage = encodeURIComponent(
+    'Olá! Vim pelo site do Cafezinho da Bia e quero tirar uma dúvida.'
+  )
 
-  const [status, setStatus] = useState('')
+  const handleManualOrder = (event) => {
+    event.preventDefault()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+    const form = event.target
+    const name = form.name.value.trim()
+    const phone = form.phone.value.trim()
+    const order = form.order.value.trim()
 
-    if (!formData.name || !formData.whatsapp || !formData.message) {
-      setStatus('error')
+    if (!name || !phone || !order) {
+      alert('Preencha nome, WhatsApp e pedido.')
       return
     }
 
-    const mensagem = `Olá! Vim pelo site ☕
-Nome: ${formData.name}
-WhatsApp: ${formData.whatsapp}
+    const message = encodeURIComponent(
+      `Olá! Quero fazer um pedido no Cafezinho da Bia.\n\n` +
+        `Nome: ${name}\n` +
+        `WhatsApp: ${phone}\n\n` +
+        `Pedido:\n${order}`
+    )
 
-Pedido:
-${formData.message}`
-
-    const numero = '5521991902018'
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
-
-    window.open(url, '_blank')
-
-    setStatus('success')
-
-    setFormData({
-      name: '',
-      whatsapp: '',
-      message: '',
-    })
-
-    setTimeout(() => setStatus(''), 4000)
+    window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
   }
 
   return (
-    <section id="contact" className="contact-section">
-      <div className="contact-container">
-        <h2 className="contact-title">Faça seu Pedido</h2>
+    <section id="contact" className="section">
+      <div className="container">
+        <div className="contact-layout">
+          <div className="contact-box card">
+            <div className="contact-text">
+              <span className="section-badge">Contato</span>
+              <h2>Fale com a gente</h2>
+              <p>
+                Quer fazer pedido, tirar dúvida ou perguntar sobre horários?
+                O caminho mais rápido continua sendo o WhatsApp.
+              </p>
+            </div>
 
-        <p className="contact-subtitle">
-          Mande sua lista de delícias e Bia prepara para você!
-        </p>
+            <div className="contact-actions">
+              <a
+                href={`https://wa.me/5521991902018?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-primary"
+              >
+                Chamar no WhatsApp
+              </a>
 
-        <form onSubmit={handleSubmit} className="contact-form">
-          <input
-            className="contact-input"
-            type="text"
-            placeholder="Seu nome completo"
-            value={formData.name}
-            onChange={(e) =>
-              setFormData({ ...formData, name: e.target.value })
-            }
-          />
+              <a href="#menu" className="btn btn-secondary">
+                Ver cardápio
+              </a>
+            </div>
+          </div>
 
-          <input
-            className="contact-input"
-            type="tel"
-            placeholder="WhatsApp com DDD"
-            value={formData.whatsapp}
-            onChange={(e) =>
-              setFormData({ ...formData, whatsapp: e.target.value })
-            }
-          />
+          <div className="contact-form-box card">
+            <div className="contact-form-header">
+              <span className="contact-mini-badge">Pedido rápido</span>
+              <h2>Faça seu pedido</h2>
+              <p>Mande sua lista e a Bia prepara para você.</p>
+            </div>
 
-          <textarea
-            className="contact-textarea"
-            placeholder="Descreva seu pedido..."
-            value={formData.message}
-            onChange={(e) =>
-              setFormData({ ...formData, message: e.target.value })
-            }
-          />
+            <form className="contact-form" onSubmit={handleManualOrder}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Seu nome completo"
+              />
 
-          <button type="submit" className="contact-button">
-            Enviar Pedido
-          </button>
-        </form>
+              <input
+                type="text"
+                name="phone"
+                placeholder="WhatsApp com DDD"
+              />
 
-        <div className="contact-status">
-          {status === 'error' && (
-            <p className="contact-status-error">Preencha todos os campos.</p>
-          )}
-          {status === 'success' && (
-            <p className="contact-status-success">
-              Pedido enviado com sucesso.
-            </p>
-          )}
+              <textarea
+                name="order"
+                placeholder="Descreva seu pedido..."
+                rows="6"
+              ></textarea>
+
+              <button type="submit" className="btn btn-primary form-submit-btn">
+                Enviar Pedido
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

@@ -1,50 +1,43 @@
-import { HashLink as Link } from 'react-router-hash-link'
-import logo from '../../assets/logo.png'
+import { useEffect, useState } from 'react'
 import './Header.css'
+import logo from '../../assets/logo.png'
 
-const Header = () => {
+function Header() {
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
-    <header className="header">
-      <div className="header-container">
-        <Link
-          smooth
-          to="#home"
-          className="header-logo-link"
-          aria-label="Ir para o início"
-        >
-          <div className="header-brand">
-            <img
-              src={logo}
-              alt="Cafezinho da Bia"
-              className="header-logo"
-            />
-            <span className="header-logo-text">Cafezinho da Bia</span>
-          </div>
-        </Link>
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container header-inner">
+        <a href="#home" className="brand" onClick={closeMenu}>
+          <img src={logo} alt="Logo Cafezinho da Bia" className="brand-logo" />
+          <span className="brand-text">Cafezinho da Bia</span>
+        </a>
 
-        <nav className="header-nav">
-          <ul className="header-nav-list">
-            <li>
-              <Link smooth to="#home" className="header-link">
-                Início
-              </Link>
-            </li>
-            <li>
-              <Link smooth to="#cardapio" className="header-link">
-                Cardápio
-              </Link>
-            </li>
-            <li>
-              <Link smooth to="#unidades" className="header-link">
-                Unidade
-              </Link>
-            </li>
-            <li>
-              <Link smooth to="#contact" className="header-link">
-                Pedidos
-              </Link>
-            </li>
-          </ul>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Abrir menu"
+          type="button"
+        >
+          ☰
+        </button>
+
+        <nav className={`nav ${menuOpen ? 'open' : ''}`}>
+          <a href="#menu" onClick={closeMenu}>Cardápio</a>
+          <a href="#unidades" onClick={closeMenu}>Unidades</a>
+          <a href="#contact" onClick={closeMenu}>Contato</a>
         </nav>
       </div>
     </header>

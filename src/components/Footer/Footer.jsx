@@ -1,24 +1,24 @@
 import './Footer.css'
 
-const Footer = () => {
+function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-container">
-        <p className="footer-copy">
-          © {new Date().getFullYear()} - Todos os direitos reservados
-        </p>
+      <div className="container footer-inner">
+        <div className="footer-brand">
+          <h3>Cafezinho da Bia ☕</h3>
+          <p>Feito com carinho na Cidade Nova, Rio de Janeiro.</p>
+        </div>
 
-        <p className="footer-dev">
-          Desenvolvido por: <strong>Wendel Silva</strong>
-        </p>
+        <div className="footer-links">
+          <a href="#home">Topo</a>
+          <a href="#menu">Cardápio</a>
+          <a href="#unidades">Unidades</a>
+          <a href="#contact">Contato</a>
+        </div>
+      </div>
 
-        <a
-          href="mailto:djwendelrj@gmail.com"
-          className="footer-email"
-          rel="noopener noreferrer"
-        >
-          djwendelrj@gmail.com
-        </a>
+      <div className="container footer-bottom">
+        <p>© 2026 Cafezinho da Bia. Todos os direitos reservados.</p>
       </div>
     </footer>
   )

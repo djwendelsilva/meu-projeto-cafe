@@ -1,449 +1,208 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import './Menu.css'
-
-const numero = '5521991902018'
-const pixKey = 'djwendelrj+bradesco@gmail.com'
 
 const menuData = [
   {
     category: 'Clássicos',
     items: [
-      { name: 'Misto Comum', price: 'R$ 8,00', tag: '🔥 Mais pedido' },
-      { name: 'Misto Premium', price: 'R$ 10,00', tag: '⭐ Favorito da rua' },
-      { name: 'Pão com Ovo', price: 'R$ 6,00', tag: '⚡ Pronto rápido' },
+      { id: 1, name: 'Misto Comum', price: 8, tag: '🔥 Mais pedido' },
+      { id: 2, name: 'Misto Premium', price: 10, tag: '⭐ Favorito da rua' },
+      { id: 3, name: 'Pão com Ovo', price: 6, tag: '⚡ Pronto rápido' },
     ],
   },
   {
     category: 'Combos e Bebidas',
     items: [
-      { name: 'Combo Misto + Café', price: 'R$ 10,50', tag: '🔥 Mais pedido' },
-      { name: 'Suco Natural', price: 'R$ 7,00' },
+      { id: 4, name: 'Combo Misto + Café', price: 10.5, tag: '🔥 Mais pedido' },
+      { id: 5, name: 'Suco Natural', price: 7 },
     ],
   },
   {
     category: 'Doces e Sobremesas',
     items: [
-      { name: 'Bolo da Casa', price: 'R$ 6,00', tag: '⭐ Favorito da rua' },
-      { name: 'Bolo de Cenoura', price: 'R$ 7,00' },
+      { id: 6, name: 'Bolo da Casa', price: 6, tag: '⭐ Favorito da rua' },
+      { id: 7, name: 'Bolo de Cenoura', price: 7 },
     ],
   },
   {
     category: 'Cafés e Adicionais',
     items: [
-      { name: 'Café', price: 'R$ 3,00', tag: '⚡ Pronto rápido' },
-      { name: 'Adicional de Ovo', price: 'R$ 2,00' },
+      { id: 8, name: 'Café', price: 3, tag: '⚡ Pronto rápido' },
+      { id: 9, name: 'Adicional de Ovo', price: 2 },
     ],
   },
 ]
 
-const parsePrice = (price) => {
-  return Number(
-    price
-      .replace('R$', '')
-      .replace(/\s/g, '')
-      .replace('.', '')
-      .replace(',', '.')
-  )
-}
+const pixKey = 'djwendelrj+bradesco@gmail.com'
 
-const formatPrice = (value) => {
-  return value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  })
-}
-
-const Menu = () => {
-  const [cart, setCart] = useState([])
-  const [paymentMethod, setPaymentMethod] = useState('pix')
+function Menu() {
+  const [cart, setCart] = useState({})
   const [customerName, setCustomerName] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState('Pix')
   const [notes, setNotes] = useState('')
-  const [pixCopied, setPixCopied] = useState(false)
-  const [cartPulse, setCartPulse] = useState(false)
-  const [addedItemName, setAddedItemName] = useState('')
-  const [mobileCartOpen, setMobileCartOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
 
-  const totalItems = useMemo(() => {
-    return cart.reduce((acc, item) => acc + item.quantity, 0)
-  }, [cart])
-
-  const total = useMemo(() => {
-    return cart.reduce((acc, item) => acc + item.numericPrice * item.quantity, 0)
-  }, [cart])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setMobileCartOpen(false)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  const triggerCartPulse = () => {
-    setCartPulse(false)
-
-    setTimeout(() => {
-      setCartPulse(true)
-
-      setTimeout(() => {
-        setCartPulse(false)
-      }, 450)
-    }, 10)
+  const addToCart = (item) => {
+    setCart((prev) => ({
+      ...prev,
+      [item.id]: {
+        ...item,
+        quantity: prev[item.id] ? prev[item.id].quantity + 1 : 1,
+      },
+    }))
   }
 
-  const triggerAddedFeedback = (itemName) => {
-    setAddedItemName(itemName)
+  const changeQuantity = (id, delta) => {
+    setCart((prev) => {
+      const item = prev[id]
+      if (!item) return prev
 
-    setTimeout(() => {
-      setAddedItemName('')
-    }, 1000)
-  }
+      const newQty = item.quantity + delta
 
-  const addItemToCart = (item) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((cartItem) => cartItem.name === item.name)
-
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
+      if (newQty <= 0) {
+        const updated = { ...prev }
+        delete updated[id]
+        return updated
       }
 
-      return [
-        ...prevCart,
-        {
-          ...item,
-          numericPrice: parsePrice(item.price),
-          quantity: 1,
-        },
-      ]
+      return {
+        ...prev,
+        [id]: { ...item, quantity: newQty },
+      }
     })
-
-    triggerCartPulse()
-    triggerAddedFeedback(item.name)
   }
 
-  const increaseQuantity = (itemName) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.name === itemName
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    )
+  const cartItems = useMemo(() => Object.values(cart), [cart])
 
-    triggerCartPulse()
+  const totalPrice = useMemo(
+    () =>
+      cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0),
+    [cartItems]
+  )
+
+  const totalItems = useMemo(
+    () => cartItems.reduce((acc, item) => acc + item.quantity, 0),
+    [cartItems]
+  )
+
+  const copyPixKey = async () => {
+    await navigator.clipboard.writeText(pixKey)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
   }
 
-  const decreaseQuantity = (itemName) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.name === itemName
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    )
-  }
-
-  const removeItem = (itemName) => {
-    setCart((prevCart) => prevCart.filter((item) => item.name !== itemName))
-  }
-
-  const handleCopyPixKey = async () => {
-    try {
-      await navigator.clipboard.writeText(pixKey)
-      setPixCopied(true)
-
-      setTimeout(() => {
-        setPixCopied(false)
-      }, 2000)
-    } catch {
-      setPixCopied(false)
-    }
-  }
-
-  const paymentText =
-    paymentMethod === 'pix'
-      ? `Pix (chave: ${pixKey})`
-      : 'Cartão na retirada'
-
-  const handleSendOrder = () => {
-    if (cart.length === 0) return
-
-    if (!customerName.trim()) {
-      alert('Digite o nome do cliente antes de enviar o pedido.')
+  const finalizeOrder = () => {
+    if (cartItems.length === 0) {
+      alert('Carrinho vazio')
       return
     }
 
-    const itemsText = cart
+    const itemsText = cartItems
       .map(
         (item) =>
-          `• ${item.quantity}x ${item.name} — ${formatPrice(
-            item.numericPrice * item.quantity
-          )}`
+          `- ${item.name} x${item.quantity} = R$ ${(item.quantity * item.price).toFixed(2)}`
       )
       .join('\n')
 
-    const mensagem = `Olá! Quero fazer o seguinte pedido no Cafezinho da Bia ☕
+    const message = encodeURIComponent(
+      `Pedido:\n\n${itemsText}\n\nTotal: R$ ${totalPrice.toFixed(
+        2
+      )}\n\nNome: ${customerName || 'Não informado'}\n\nPagamento: ${
+        paymentMethod
+      }\n\nChave Pix: ${pixKey}\n\nObs: ${notes || 'Nenhuma'}`
+    )
 
-Cliente: ${customerName}
-
-Pedido:
-${itemsText}
-
-Total: ${formatPrice(total)}
-
-Pagamento: ${paymentText}
-${
-  paymentMethod === 'pix'
-    ? '\nPagamento no Pix, por favor enviar o comprovante.'
-    : ''
-}
-
-Retirada: no local
-
-Observações:
-${notes || 'Nenhuma.'}`
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
-    window.open(url, '_blank')
+    window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
   }
 
   return (
-    <section id="cardapio" className="menu-section">
-      <div className="menu-container">
-        <h2 className="menu-title">Nosso Cardápio</h2>
+    <section id="menu" className="section">
+      <div className="container">
 
-        <p className="menu-subtitle">
-          Escolha, ajuste e finalize seu pedido
-        </p>
+        <div className="section-header">
+          <span className="section-badge">Cardápio</span>
+          <h2 className="section-title">Monte seu pedido</h2>
+        </div>
 
-        <div className="menu-grid">
+        <div className="menu-categories">
+
           {menuData.map((category) => (
-            <div className="menu-card" key={category.category}>
-              <h3 className="menu-category-title">{category.category}</h3>
+            <div key={category.category} className="category card">
+              <h3>{category.category}</h3>
 
-              <ul className="menu-list">
-                {category.items.map((item) => {
-                  const isAdded = addedItemName === item.name
+              {category.items.map((item) => (
+                <div key={item.id} className="menu-item">
+                  <div>
+                    <strong>{item.name}</strong>
+                    {item.tag && <p className="tag">{item.tag}</p>}
+                  </div>
 
-                  return (
-                    <li className="menu-item" key={item.name}>
-                      <div className="menu-item-info">
-                        <span className="menu-item-name">{item.name}</span>
-
-                        {item.tag && (
-                          <span className="menu-tag">{item.tag}</span>
-                        )}
-                      </div>
-
-                      <div className="menu-item-actions">
-                        <span className="menu-price">{item.price}</span>
-
-                        <button
-                          type="button"
-                          className={`menu-add-button ${isAdded ? 'added' : ''}`}
-                          onClick={() => addItemToCart(item)}
-                        >
-                          {isAdded ? 'Adicionado' : 'Adicionar'}
-                        </button>
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
+                  <div className="item-right">
+                    <span>R$ {item.price.toFixed(2)}</span>
+                    <button onClick={() => addToCart(item)}>
+                      Adicionar
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
+
         </div>
 
-        <div className="menu-mobile-cart-bar">
-          <button
-            type="button"
-            className={`menu-mobile-cart-button ${cartPulse ? 'pulse' : ''}`}
-            onClick={() => setMobileCartOpen((prev) => !prev)}
+        {/* CARRINHO */}
+        <div className="cart card">
+
+          <h3>Seu pedido ({totalItems})</h3>
+
+          {cartItems.map((item) => (
+            <div key={item.id} className="cart-item">
+              <span>{item.name}</span>
+
+              <div>
+                <button onClick={() => changeQuantity(item.id, -1)}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => changeQuantity(item.id, 1)}>+</button>
+              </div>
+            </div>
+          ))}
+
+          <input
+            placeholder="Seu nome"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+          />
+
+          <select
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
           >
-            <span className="menu-mobile-cart-label">Seu pedido</span>
-            <span className="menu-mobile-cart-items">
-              {totalItems} {totalItems === 1 ? 'item' : 'itens'}
-            </span>
-            <span className="menu-mobile-cart-total">{formatPrice(total)}</span>
-          </button>
-        </div>
+            <option>Pix</option>
+            <option>Dinheiro</option>
+            <option>Cartão</option>
+          </select>
 
-        <div className={`menu-order-box ${mobileCartOpen ? 'mobile-open' : ''}`}>
-          <div className="menu-order-header">
-            <h3 className="menu-order-title">Seu pedido</h3>
-
-            <span className={`menu-order-count ${cartPulse ? 'pulse' : ''}`}>
-              {totalItems} {totalItems === 1 ? 'item' : 'itens'}
-            </span>
-          </div>
-
-          {cart.length === 0 ? (
-            <p className="menu-empty-cart">Nenhum item ainda.</p>
-          ) : (
-            <>
-              <ul className="menu-cart-list">
-                {cart.map((item) => (
-                  <li className="menu-cart-item" key={item.name}>
-                    <div className="menu-cart-info">
-                      <span className="menu-cart-name">{item.name}</span>
-                      <span className="menu-cart-price">
-                        {formatPrice(item.numericPrice)} cada
-                      </span>
-                    </div>
-
-                    <div className="menu-cart-controls">
-                      <button
-                        type="button"
-                        className="qty-button"
-                        onClick={() => decreaseQuantity(item.name)}
-                      >
-                        −
-                      </button>
-
-                      <span className="qty-value">{item.quantity}</span>
-
-                      <button
-                        type="button"
-                        className="qty-button"
-                        onClick={() => increaseQuantity(item.name)}
-                      >
-                        +
-                      </button>
-
-                      <button
-                        type="button"
-                        className="remove-button"
-                        onClick={() => removeItem(item.name)}
-                      >
-                        Remover
-                      </button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="menu-form-box">
-                <div className="menu-form-group">
-                  <label className="menu-label" htmlFor="customerName">
-                    Nome do cliente
-                  </label>
-                  <input
-                    id="customerName"
-                    type="text"
-                    className="menu-input"
-                    placeholder="Digite seu nome"
-                    value={customerName}
-                    onChange={(e) => setCustomerName(e.target.value)}
-                  />
-                </div>
-
-                <div className="menu-form-group">
-                  <label className="menu-label" htmlFor="notes">
-                    Observações
-                  </label>
-                  <textarea
-                    id="notes"
-                    className="menu-textarea"
-                    placeholder="Ex: retirar às 8h, sem açúcar, etc."
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div className="menu-payment-box">
-                <p className="menu-payment-title">Forma de pagamento</p>
-
-                <label className="menu-payment-option">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="pix"
-                    checked={paymentMethod === 'pix'}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  Pix
-                </label>
-
-                <label className="menu-payment-option">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cartao"
-                    checked={paymentMethod === 'cartao'}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  />
-                  Cartão na retirada
-                </label>
-              </div>
-
-              <div className="menu-summary-box">
-                <h4 className="menu-summary-title">Resumo final</h4>
-
-                <div className="menu-summary-row">
-                  <span className="menu-summary-label">Cliente</span>
-                  <span className="menu-summary-value">
-                    {customerName || 'Não informado'}
-                  </span>
-                </div>
-
-                <div className="menu-summary-row">
-                  <span className="menu-summary-label">Itens</span>
-                  <span className="menu-summary-value">{totalItems}</span>
-                </div>
-
-                <div className="menu-summary-row">
-                  <span className="menu-summary-label">Pagamento</span>
-                  <span className="menu-summary-value">{paymentText}</span>
-                </div>
-
-                {paymentMethod === 'pix' && (
-                  <div className="menu-pix-box">
-                    <span className="menu-pix-label">Chave Pix</span>
-                    <span className="menu-pix-key">{pixKey}</span>
-
-                    <button
-                      type="button"
-                      className={`menu-copy-pix-button ${pixCopied ? 'copied' : ''}`}
-                      onClick={handleCopyPixKey}
-                    >
-                      {pixCopied ? 'Copiado!' : 'Copiar'}
-                    </button>
-
-                    <p className="menu-pix-note">
-                      Pagamento no Pix, por favor enviar o comprovante.
-                    </p>
-                  </div>
-                )}
-
-                <div className="menu-total-box">
-                  <span className="menu-total-label">Total</span>
-                  <span className="menu-total-value">{formatPrice(total)}</span>
-                </div>
-
-                <p className="menu-pickup-note">
-                  Retirada somente no local.
-                </p>
-              </div>
-
-              <button
-                type="button"
-                className="menu-send-button"
-                onClick={handleSendOrder}
-              >
-                Enviar pedido no WhatsApp
+          {paymentMethod === 'Pix' && (
+            <div className="pix-box">
+              <p>{pixKey}</p>
+              <button onClick={copyPixKey}>
+                {copied ? 'Copiado!' : 'Copiar chave'}
               </button>
-            </>
+            </div>
           )}
+
+          <textarea
+            placeholder="Observações"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+
+          <h3>Total: R$ {totalPrice.toFixed(2)}</h3>
+
+          <button className="btn btn-primary" onClick={finalizeOrder}>
+            Finalizar no WhatsApp
+          </button>
+
         </div>
       </div>
     </section>

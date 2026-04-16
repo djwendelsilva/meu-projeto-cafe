@@ -1,76 +1,62 @@
 import './Home.css'
-import imagemDesktop from '../assets/bia.cafe.png'
-import imagemMobile from '../assets/bia.cafe.mobile.png'
+import heroDesktop from '../assets/bia.cafe.png'
+import heroMobile from '../assets/bia.cafe.mobile.png'
 
-const Home = () => {
-  const handleScrollToMenu = () => {
-    const section = document.getElementById('cardapio')
-
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
+function Home() {
   const handleWhatsApp = () => {
-    const numero = '5521991902018'
+    const message = encodeURIComponent(
+      'Olá! Vim pelo site do Cafezinho da Bia e quero fazer um pedido.'
+    )
 
-    const mensagem = `Olá! Vim pelo site do Cafezinho da Bia ☕
-Gostaria de fazer um pedido.
-
-Nome:
-Pedido:
-Forma de pagamento:
-Retirada no local.`
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
-    window.open(url, '_blank')
+    window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
   }
 
   return (
-    <section id="home" className="hero">
-      <div className="hero-container">
-        
-        <div className="hero-text">
+    <section id="home" className="home">
+      <div className="container home-grid">
+        <div className="home-text">
+          <span className="section-badge home-badge fade-up delay-1">
+            Street Coffee
+          </span>
 
-          <span className="hero-badge">Street Coffee</span>
+          <h1 className="fade-up delay-2">
+            O café que combina
+            <span> rapidez, sabor e carinho.</span>
+          </h1>
 
-          <h1>Peça antes e pegue com a Bia sem fila.</h1>
-
-          <p>
-            Escolha no site, envie no WhatsApp e retire seu café sem esperar.
+          <p className="fade-up delay-3">
+            Aqui o movimento da rua encontra ótima música, atendimento acolhedor
+            e um café feito para quem gosta de praticidade sem abrir mão do sabor.
           </p>
 
-          <div className="hero-buttons">
-            <button className="btn-primary" onClick={handleScrollToMenu}>
+          <div className="home-actions fade-up delay-4">
+            <a href="#menu" className="btn btn-primary">
               Ver Cardápio
-            </button>
+            </a>
 
-            <button className="btn-secondary" onClick={handleWhatsApp}>
+            <button
+              className="btn btn-secondary"
+              onClick={handleWhatsApp}
+              type="button"
+            >
               Pedir no WhatsApp
             </button>
           </div>
-
         </div>
 
-        <div className="hero-image">
-          <div className="hero-image-scene">
+        <div className="home-image-wrap fade-image delay-3">
+          <div className="home-glow"></div>
 
-            <div className="hero-glow"></div>
-
+          <div className="home-image-box">
             <picture>
-              <source media="(max-width: 768px)" srcSet={imagemMobile} />
+              <source media="(max-width: 768px)" srcSet={heroMobile} />
               <img
-                src={imagemDesktop}
-                alt="Carrinho do Cafezinho da Bia"
-                className="hero-img"
+                src={heroDesktop}
+                alt="Carrinho de café do Cafezinho da Bia"
               />
             </picture>
-
-            <div className="hero-ground"></div>
-
           </div>
         </div>
-
       </div>
     </section>
   )

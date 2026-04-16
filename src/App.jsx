@@ -1,12 +1,11 @@
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import WhatsAppButton from './components/ui/WhatsAppButton'
 
-import Home from "./pages/Home";
-import Menu from "./components/sections/Menu";
-import Unidades from "./components/sections/Unidades";
-import Contact from "./pages/Contact";
-
-import WhatsAppButton from "./components/ui/WhatsAppButton";
+import Home from './pages/Home'
+import Menu from './components/sections/Menu'
+import Unidades from './components/sections/Unidades'
+import Contact from './pages/Contact'
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
       <Footer />
       <WhatsAppButton />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

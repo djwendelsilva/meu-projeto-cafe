@@ -1,55 +1,54 @@
 import './Unidades.css'
-import MapView from './Map'
+import Map from './Map'
 
-const Unidades = () => {
-  const mapaLink = 'https://maps.app.goo.gl/RToUpURxSzeFseTx7'
-
+function Unidades() {
   return (
-    <section id="unidades" className="unidades-section">
-      <div className="unidades-content">
-        <h2 className="unidades-title">Nossa Unidade</h2>
-
-        <div className="unidades-top">
-          <div className="unidades-card">
-            <div className="unidades-icon">📍</div>
-
-            <h3>Cidade Nova - RJ</h3>
-
-            <p>
-              R. Laura de Araújo
-              <br />
-              Rio de Janeiro - RJ
-            </p>
-
-            <a
-              href={mapaLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="unidades-button"
-            >
-              Ver no mapa
-            </a>
-          </div>
-
-          <div className="unidades-map-card">
-            <h3 className="unidades-map-title">Como chegar</h3>
-
-            <div className="unidades-map-wrapper">
-              <MapView />
-            </div>
-          </div>
+    <section id="unidades" className="section">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-badge">Desde o começo</span>
+          <h2 className="section-title">Aqui é a Bia</h2>
+          <p className="section-subtitle">
+            Mais do que café, uma história de esforço, carinho e presença de rua.
+          </p>
         </div>
 
-        <div className="unidades-story">
-          <h3>Nossa história</h3>
+        <div className="grid-2 unidades-grid">
 
-          <p>
-            Começamos na rua, com um carrinho simples e muito café bom.
-          </p>
+          <div className="card unidade-info">
 
-          <p>
-            Hoje mantemos a mesma essência: rápido, direto e feito com carinho.
-          </p>
+            <h3>Cidade Nova, Rio de Janeiro</h3>
+
+            <div className="unidade-texto">
+              <p>
+                O Cafezinho da Bia nasceu da força de uma mãe solo que começou com
+                uma mesa simples na calçada e muita vontade de vencer. Aos poucos,
+                o que era apenas um começo virou ponto de encontro para quem queria
+                um café gostoso e atendimento humano.
+              </p>
+
+              <p>
+                Hoje, a essência continua a mesma: servir bem, com rapidez, carinho
+                e preço justo. Cada café entregue carrega trabalho, cuidado e uma
+                história construída com esforço de verdade.
+              </p>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=R.+Laura+de+Araujo,+Cidade+Nova,+Rio+de+Janeiro,+RJ,+20211-170"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary unidade-btn"
+            >
+              Ver localização
+            </a>
+
+          </div>
+
+          <div className="card unidade-map">
+            <Map />
+          </div>
+
         </div>
       </div>
     </section>

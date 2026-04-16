@@ -3,123 +3,103 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 88px; /* 🔥 aumentamos um pouco */
-  z-index: 1200;
-  background: rgba(8, 6, 13, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 999;
+  padding: 16px 0;
+  transition: 0.3s ease;
 }
 
-.header-container {
-  max-width: 1126px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
+.header.scrolled {
+  background: rgba(10, 10, 10, 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
-.header-logo-link {
-  text-decoration: none;
-}
-
-.header-brand {
+.brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  min-width: 0;
 }
 
-/* 🔥 AQUI AUMENTA A LOGO */
-.header-logo {
-  width: 56px;
-  height: 56px;
+.brand-logo {
+  width: 46px;
+  height: 46px;
   object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
 }
 
-.header-logo-text {
-  color: #fff;
+.brand-text {
+  font-size: 18px;
   font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.2px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
 }
 
-.header-nav-list {
-  list-style: none;
+.nav {
   display: flex;
   align-items: center;
-  gap: 26px;
-  margin: 0;
-  padding: 0;
+  gap: 22px;
 }
 
-.header-link {
-  color: #e2e2e2;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1rem;
-  position: relative;
-  transition: color 0.2s ease;
+.nav a {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
-.header-link:hover {
-  color: #d9ae67;
+.nav a:hover {
+  color: var(--text);
 }
 
-.header-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: #d9ae67;
-  transition: width 0.2s ease;
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 24px;
 }
 
-.header-link:hover::after {
-  width: 100%;
-}
-
-/* 📱 MOBILE */
 @media (max-width: 768px) {
-  .header {
-    height: 96px;
+  .menu-toggle {
+    display: block;
   }
 
-  .header-container {
-    flex-wrap: wrap;
-    padding: 8px 14px;
-    gap: 8px;
-  }
-
-  .header-brand {
-    gap: 10px;
-  }
-
-  /* 🔥 LOGO MENOR NO MOBILE */
-  .header-logo {
-    width: 72px;
-    height: 44px;
-  }
-
-  .header-logo-text {
-    font-size: 0.95rem;
-  }
-
-  .header-nav {
-    width: 100%;
-  }
-
-  .header-nav-list {
-    width: 100%;
-    justify-content: flex-end;
+  .nav {
+    position: absolute;
+    top: 76px;
+    right: 16px;
+    width: 220px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(18, 18, 18, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(12px);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 14px;
-    flex-wrap: wrap;
   }
 
-  .header-link {
-    font-size: 0.92rem;
+  .nav.open {
+    display: flex;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-text {
+    font-size: 16px;
   }
 }
