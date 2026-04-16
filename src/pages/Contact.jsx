@@ -20,9 +20,9 @@ function Contact() {
 
     const message = encodeURIComponent(
       `Olá! Quero fazer um pedido no Cafezinho da Bia.\n\n` +
-      `Nome: ${name}\n` +
-      `WhatsApp: ${phone}\n\n` +
-      `Pedido:\n${order}`
+        `Nome: ${name}\n` +
+        `WhatsApp: ${phone}\n\n` +
+        `Pedido:\n${order}`
     )
 
     window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
@@ -60,8 +60,9 @@ function Contact() {
 
           <div className="contact-form-box card">
             <div className="contact-form-header">
-              <h2>Faça seu Pedido</h2>
-              <p>Mande sua lista de delícias e Bia prepara para você!</p>
+              <span className="contact-mini-badge">Pedido rápido</span>
+              <h2>Faça seu pedido</h2>
+              <p>Mande sua lista e a Bia prepara para você.</p>
             </div>
 
             <form className="contact-form" onSubmit={handleManualOrder}>
