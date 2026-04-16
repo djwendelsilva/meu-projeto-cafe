@@ -87,7 +87,6 @@
   backdrop-filter: blur(10px);
 }
 
-/* IMAGEM ARREDONDADA (FIX PRINCIPAL) */
 .hero-desktop-img,
 .hero-mobile-img {
   width: 100%;
@@ -206,16 +205,18 @@
   .home-text h1 {
     font-size: 28px;
     line-height: 1.08;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
+  /* 🔥 AJUSTE AQUI (TEXTO MAIOR) */
   .home-text p {
-    font-size: 13px;
+    font-size: 15px;        /* antes 13px */
     line-height: 1.7;
-    margin-bottom: 16px;
+    max-width: 36ch;
+    margin-bottom: 18px;
+    padding: 0;
   }
 
-  /* BOTÕES LADO A LADO (FIX PRINCIPAL) */
   .home-actions {
     flex-direction: row;
     justify-content: center;
@@ -231,7 +232,11 @@
     white-space: nowrap;
   }
 
-  /* IMAGEM COM CARD PADRÃO */
+  .home-image-wrap {
+    margin-top: 6px;
+    width: 100%;
+  }
+
   .home-image-box {
     width: 100%;
     max-width: 100%;
