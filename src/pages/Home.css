@@ -1,8 +1,8 @@
 .home {
-  min-height: 100vh;
   display: flex;
   align-items: flex-start;
-  padding-top: 135px;
+  padding-top: 120px;
+  padding-bottom: clamp(32px, 6vw, 80px);
 }
 
 .home-grid {
@@ -85,6 +85,9 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
+
+  /* EFEITO FLUTUAR */
+  animation: floatSmooth 6s ease-in-out infinite;
 }
 
 /* desktop aparece por padrão */
@@ -119,6 +122,18 @@
 .delay-2 { animation-delay: 0.25s; }
 .delay-3 { animation-delay: 0.45s; }
 .delay-4 { animation-delay: 0.65s; }
+
+@keyframes floatSmooth {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 
 @keyframes fadeUpSmooth {
   to {
