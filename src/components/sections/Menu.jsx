@@ -41,6 +41,7 @@ function Menu() {
   const [paymentMethod, setPaymentMethod] = useState('Pix')
   const [notes, setNotes] = useState('')
   const [copied, setCopied] = useState(false)
+  const [addedItemId, setAddedItemId] = useState(null)
 
   const addToCart = (item) => {
     setCart((prev) => ({
@@ -50,6 +51,12 @@ function Menu() {
         quantity: prev[item.id] ? prev[item.id].quantity + 1 : 1,
       },
     }))
+
+    setAddedItemId(item.id)
+
+    setTimeout(() => {
+      setAddedItemId((currentId) => (currentId === item.id ? null : currentId))
+    }, 1200)
   }
 
   const changeQuantity = (id, delta) => {
@@ -75,8 +82,7 @@ function Menu() {
   const cartItems = useMemo(() => Object.values(cart), [cart])
 
   const totalPrice = useMemo(
-    () =>
-      cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0),
+    () => cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0),
     [cartItems]
   )
 
@@ -86,9 +92,13 @@ function Menu() {
   )
 
   const copyPixKey = async () => {
-    await navigator.clipboard.writeText(pixKey)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
+    try {
+      await navigator.clipboard.writeText(pixKey)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch {
+      alert('Erro ao copiar a chave Pix.')
+    }
   }
 
   const finalizeOrder = () => {
@@ -118,41 +128,44 @@ function Menu() {
   return (
     <section id="menu" className="section">
       <div className="container">
-
         <div className="section-header">
           <span className="section-badge">Cardápio</span>
           <h2 className="section-title">Monte seu pedido</h2>
         </div>
 
         <div className="menu-categories">
-
           {menuData.map((category) => (
             <div key={category.category} className="category card">
               <h3>{category.category}</h3>
 
-              {category.items.map((item) => (
-                <div key={item.id} className="menu-item">
-                  <div>
-                    <strong>{item.name}</strong>
-                    {item.tag && <p className="tag">{item.tag}</p>}
-                  </div>
+              {category.items.map((item) => {
+                const wasAdded = addedItemId === item.id
 
-                  <div className="item-right">
-                    <span>R$ {item.price.toFixed(2)}</span>
-                    <button onClick={() => addToCart(item)}>
-                      Adicionar
-                    </button>
+                return (
+                  <div key={item.id} className="menu-item">
+                    <div>
+                      <strong>{item.name}</strong>
+                      {item.tag && <p className="tag">{item.tag}</p>}
+                    </div>
+
+                    <div className="item-right">
+                      <span>R$ {item.price.toFixed(2)}</span>
+                      <button
+                        type="button"
+                        onClick={() => addToCart(item)}
+                        className={wasAdded ? 'added' : ''}
+                      >
+                        {wasAdded ? '✔ Adicionado' : 'Adicionar'}
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           ))}
-
         </div>
 
-        {/* CARRINHO */}
         <div className="cart card">
-
           <h3>Seu pedido ({totalItems})</h3>
 
           {cartItems.map((item) => (
@@ -160,9 +173,13 @@ function Menu() {
               <span>{item.name}</span>
 
               <div>
-                <button onClick={() => changeQuantity(item.id, -1)}>-</button>
+                <button type="button" onClick={() => changeQuantity(item.id, -1)}>
+                  -
+                </button>
                 <span>{item.quantity}</span>
-                <button onClick={() => changeQuantity(item.id, 1)}>+</button>
+                <button type="button" onClick={() => changeQuantity(item.id, 1)}>
+                  +
+                </button>
               </div>
             </div>
           ))}
@@ -185,7 +202,7 @@ function Menu() {
           {paymentMethod === 'Pix' && (
             <div className="pix-box">
               <p>{pixKey}</p>
-              <button onClick={copyPixKey}>
+              <button type="button" onClick={copyPixKey}>
                 {copied ? 'Copiado!' : 'Copiar chave'}
               </button>
             </div>
@@ -199,10 +216,9 @@ function Menu() {
 
           <h3>Total: R$ {totalPrice.toFixed(2)}</h3>
 
-          <button className="btn btn-primary" onClick={finalizeOrder}>
+          <button type="button" className="btn btn-primary" onClick={finalizeOrder}>
             Finalizar no WhatsApp
           </button>
-
         </div>
       </div>
     </section>

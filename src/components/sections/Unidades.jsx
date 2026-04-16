@@ -35,7 +35,7 @@ function Unidades() {
             </div>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=R.+Laura+de+Araujo,+Cidade+Nova,+Rio+de+Janeiro,+RJ,+20211-170"
+              href="https://maps.app.goo.gl/nPoxua6Rh71xGsHPA"
               target="_blank"
               rel="noreferrer"
               className="btn btn-primary unidade-btn"

@@ -72,6 +72,11 @@
   transform: translateY(-1px);
 }
 
+.item-right button.added {
+  background: #25d366;
+  color: #fff;
+}
+
 /* CARRINHO */
 .cart {
   padding: 24px;
