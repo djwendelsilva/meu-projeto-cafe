@@ -15,21 +15,21 @@ function Home() {
     <section id="home" className="home">
       <div className="container home-grid">
         <div className="home-text">
-          <span className="section-badge home-badge fade-up delay-1">
+          <span className="section-badge home-badge fade delay-1">
             Street Coffee
           </span>
 
-          <h1 className="fade-up delay-2">
+          <h1 className="fade delay-2">
             O café que combina
             <span> rapidez, sabor e carinho.</span>
           </h1>
 
-          <p className="fade-up delay-3">
+          <p className="fade delay-3">
             Aqui o movimento da rua encontra ótima música, atendimento acolhedor
             e um café feito para quem gosta de praticidade sem abrir mão do sabor.
           </p>
 
-          <div className="home-actions fade-up delay-4">
+          <div className="home-actions fade delay-4">
             <a href="#menu" className="btn btn-primary">
               Ver Cardápio
             </a>
@@ -44,17 +44,21 @@ function Home() {
           </div>
         </div>
 
-        <div className="home-image-wrap fade-image delay-3">
+        <div className="home-image-wrap fade delay-3">
           <div className="home-glow"></div>
 
           <div className="home-image-box">
-            <picture>
-              <source media="(max-width: 480px)" srcSet={heroMobile} />
-              <img
-                src={heroDesktop}
-                alt="Carrinho de café do Cafezinho da Bia"
-              />
-            </picture>
+            <img
+              src={heroDesktop}
+              alt="Carrinho de café do Cafezinho da Bia"
+              className="hero-desktop-img"
+            />
+
+            <img
+              src={heroMobile}
+              alt="Carrinho de café do Cafezinho da Bia"
+              className="hero-mobile-img"
+            />
           </div>
         </div>
       </div>
