@@ -1,5 +1,6 @@
 import './Home.css'
-import heroImage from '../assets/bia.cafe.png'
+import heroDesktop from '../assets/bia.cafe.png'
+import heroMobile from '../assets/bia.cafe.mobile.png'
 
 function Home() {
   const handleWhatsApp = () => {
@@ -47,10 +48,13 @@ function Home() {
           <div className="home-glow"></div>
 
           <div className="home-image-box">
-            <img
-              src={heroImage}
-              alt="Carrinho de café do Cafezinho da Bia"
-            />
+            <picture>
+              <source media="(max-width: 480px)" srcSet={heroMobile} />
+              <img
+                src={heroDesktop}
+                alt="Carrinho de café do Cafezinho da Bia"
+              />
+            </picture>
           </div>
         </div>
       </div>
