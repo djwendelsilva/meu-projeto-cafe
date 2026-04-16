@@ -171,15 +171,15 @@
     font-size: clamp(36px, 7vw, 48px);
     line-height: 1.06;
     margin-bottom: 14px;
-    max-width: 18ch; /* mais largura */
+    max-width: 18ch;
   }
 
   .home-text p {
     margin-inline: auto;
     margin-bottom: 20px;
-    max-width: 46ch; /* mais largura */
+    max-width: 46ch;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
   .home-actions {
@@ -205,7 +205,8 @@
   }
 
   .home-image-box {
-    max-width: 330px;
+    max-width: 360px;
+    width: 100%;
     aspect-ratio: 3 / 4;
     margin: 0 auto;
     border-radius: 20px;
@@ -216,15 +217,16 @@
   }
 }
 
-/* MOBILE */
+/* MOBILE REAL */
 @media (max-width: 480px) {
   .home {
     padding-top: 92px;
     padding-bottom: 14px;
   }
 
+  /* usa mais da largura do celular */
   .home .container {
-    width: min(100% - 24px, 420px);
+    width: min(100% - 20px, 430px);
   }
 
   .home-grid {
@@ -245,14 +247,14 @@
   .home-text h1 {
     font-size: 28px;
     line-height: 1.08;
-    max-width: 16ch; /* abriu bem mais */
+    max-width: 18ch; /* mais largo */
     margin-bottom: 10px;
   }
 
   .home-text p {
     font-size: 13px;
     line-height: 1.7;
-    max-width: 37ch; /* abriu bem mais */
+    max-width: 40ch; /* mais largo */
     margin-bottom: 16px;
     padding: 0;
   }
@@ -278,8 +280,8 @@
   }
 
   .home-image-box {
-    max-width: 280px;
     width: 100%;
+    max-width: 320px; /* imagem maior */
     aspect-ratio: 3 / 4;
     border-radius: 18px;
   }
