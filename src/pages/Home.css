@@ -8,8 +8,8 @@
 
 .home-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: 42px;
 }
 
@@ -59,9 +59,9 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  padding-top: 8px;
+  height: 100%;
 }
 
 .home-glow {
@@ -81,13 +81,17 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 420px;
+  max-width: clamp(420px, 40vw, 520px);
+  aspect-ratio: 5 / 4;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.03);
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: floatSmooth 6s ease-in-out infinite;
   will-change: transform;
 }
@@ -96,7 +100,8 @@
 .hero-mobile-img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%; 
+  object-fit: cover;
 }
 
 .hero-mobile-img {

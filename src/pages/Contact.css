@@ -1,8 +1,16 @@
+.contact {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: flex-start; /* 🔥 ALTERADO */
+  padding-top: 40px; /* 🔥 ADICIONADO */
+}
+
 .contact-layout {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   align-items: stretch;
   gap: 24px;
+  margin-bottom: 40px;
 }
 
 .contact-box,
