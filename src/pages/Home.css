@@ -268,8 +268,8 @@
   }
 
   .home-image-box {
-    max-width: 320px;
-    aspect-ratio: auto;
+    max-width: 4200px;
+    aspect-ratio: 4 / 5;
     border: none;
     border-radius: 0;
     background: transparent;
