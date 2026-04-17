@@ -5,25 +5,28 @@
 .unidade-info {
   display: flex;
   flex-direction: column;
-  padding: 26px;
+  justify-content: center;
+  padding: 28px;
 }
 
 .unidade-info h3 {
   margin-bottom: 14px;
   font-size: 24px;
+  line-height: 1.2;
 }
 
 .unidade-texto {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-bottom: 20px;
+  max-width: 56ch;
+  margin-bottom: 22px;
 }
 
 .unidade-texto p {
   margin: 0;
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--muted);
 }
 
@@ -35,6 +38,7 @@
   min-height: 360px;
   padding: 0;
   overflow: hidden;
+  border-radius: 22px;
 }
 
 .unidade-map .map-frame {
@@ -60,6 +64,7 @@
 
   .unidade-texto {
     gap: 10px;
+    max-width: 100%;
     margin-bottom: 14px;
   }
 
@@ -70,9 +75,9 @@
 
   .unidade-btn {
     width: 100%;
-    text-align: center;
     padding: 12px 14px;
     font-size: 14px;
+    text-align: center;
   }
 
   .unidade-map {
