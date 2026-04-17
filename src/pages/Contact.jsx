@@ -12,6 +12,8 @@ function Contact() {
     order: '',
   })
 
+  const [success, setSuccess] = useState(false)
+
   const whatsappMessage = encodeURIComponent(defaultWhatsappMessage)
 
   const handleChange = (event) => {
@@ -44,11 +46,20 @@ function Contact() {
 
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
 
+    // limpa os campos
     setFormData({
       name: '',
       phone: '',
       order: '',
     })
+
+    // mostra mensagem de sucesso
+    setSuccess(true)
+
+    // opcional: esconder depois de 3 segundos
+    setTimeout(() => {
+      setSuccess(false)
+    }, 3000)
   }
 
   return (
@@ -116,6 +127,13 @@ function Contact() {
               <button type="submit" className="btn btn-primary form-submit-btn">
                 Enviar Pedido
               </button>
+
+              {/* MENSAGEM DE SUCESSO */}
+              {success && (
+                <p className="success-message">
+                  Pedido enviado com sucesso! ✔
+                </p>
+              )}
             </form>
           </div>
         </div>

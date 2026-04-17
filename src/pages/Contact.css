@@ -107,6 +107,15 @@
   font-size: 17px;
 }
 
+/* MENSAGEM DE SUCESSO */
+.success-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #4caf50;
+  text-align: center;
+  font-weight: 500;
+}
+
 /* RESPONSIVO FINAL */
 @media (max-width: 900px) {
   .contact-layout {
