@@ -40,3 +40,40 @@
 .unidade-map .map-frame {
   height: 100%;
 }
+
+@media (max-width: 700px) {
+  .unidades-grid {
+    gap: 18px;
+  }
+
+  .unidade-info {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .unidade-info h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .unidade-texto {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .unidade-texto p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .unidade-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .unidade-map {
+    min-height: 240px;
+    border-radius: 18px;
+  }
+}
