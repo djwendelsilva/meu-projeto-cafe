@@ -15,14 +15,14 @@ function Unidades() {
 
         <div className="grid-2 unidades-grid">
           <div className="card unidade-info">
-            <h3>Cidade Nova, Rio de Janeiro</h3>
+            <h3>Nossa História</h3>
 
             <div className="unidade-texto">
               <p>
-                O Cafezinho da Bia nasceu da força de uma mãe solo que começou com
-                uma mesa simples na calçada e muita vontade de vencer. Aos poucos,
-                o que era apenas um começo virou ponto de encontro para quem queria
-                um café gostoso e atendimento humano.
+                O Cafezinho da Bia nasceu na Cidade Nova Rio de Janeiro, da força 
+                de uma mãe solo que começou com uma mesa simples na calçada e muita 
+                vontade de vencer. Aos poucos, o que era apenas um começo virou ponto
+                de encontro para quem queria um café gostoso e atendimento humano.
               </p>
 
               <p>
