@@ -110,21 +110,68 @@
 }
 
 @media (max-width: 700px) {
+  .contact-layout {
+    gap: 18px;
+  }
+
   .contact-box,
   .contact-form-box {
-    padding: 20px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .contact-text h2,
+  .contact-form-header h2 {
+    font-size: 24px;
+    line-height: 1.15;
+  }
+
+  .contact-text p,
+  .contact-form-header p {
+    font-size: 14px;
+    line-height: 1.65;
   }
 
   .contact-actions {
     flex-direction: column;
+    gap: 10px;
   }
 
   .contact-actions .btn {
     width: 100%;
+    padding: 12px 14px;
     text-align: center;
+    font-size: 14px;
   }
 
   .contact-form-header {
+    margin-bottom: 16px;
     text-align: left;
+  }
+
+  .contact-mini-badge {
+    margin-bottom: 10px;
+    padding: 6px 11px;
+    font-size: 11px;
+  }
+
+  .contact-form {
+    gap: 12px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .contact-form textarea {
+    min-height: 120px;
+  }
+
+  .form-submit-btn {
+    padding: 12px 14px;
+    font-size: 14px;
   }
 }
