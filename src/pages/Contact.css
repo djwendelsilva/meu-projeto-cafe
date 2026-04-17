@@ -103,6 +103,7 @@
   font-size: 17px;
 }
 
+/* RESPONSIVO FINAL */
 @media (max-width: 900px) {
   .contact-layout {
     grid-template-columns: 1fr;
@@ -111,19 +112,19 @@
 
 @media (max-width: 700px) {
   .contact-layout {
-    gap: 18px;
+    gap: 16px;
   }
 
   .contact-box,
   .contact-form-box {
-    padding: 18px;
+    padding: 16px;
     border-radius: 18px;
   }
 
   .contact-text h2,
   .contact-form-header h2 {
-    font-size: 24px;
-    line-height: 1.15;
+    font-size: 22px;
+    line-height: 1.2;
   }
 
   .contact-text p,
@@ -140,8 +141,8 @@
   .contact-actions .btn {
     width: 100%;
     padding: 12px 14px;
-    text-align: center;
     font-size: 14px;
+    text-align: center;
   }
 
   .contact-form-header {
@@ -151,7 +152,7 @@
 
   .contact-mini-badge {
     margin-bottom: 10px;
-    padding: 6px 11px;
+    padding: 6px 10px;
     font-size: 11px;
   }
 
@@ -167,7 +168,7 @@
   }
 
   .contact-form textarea {
-    min-height: 120px;
+    min-height: 110px;
   }
 
   .form-submit-btn {

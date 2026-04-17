@@ -41,25 +41,26 @@
   height: 100%;
 }
 
+/* MOBILE FINAL */
 @media (max-width: 700px) {
   .unidades-grid {
-    gap: 18px;
+    gap: 16px;
   }
 
   .unidade-info {
-    padding: 18px;
+    padding: 16px;
     border-radius: 18px;
   }
 
   .unidade-info h3 {
     margin-bottom: 10px;
     font-size: 20px;
-    line-height: 1.25;
+    line-height: 1.3;
   }
 
   .unidade-texto {
     gap: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .unidade-texto p {
@@ -70,10 +71,12 @@
   .unidade-btn {
     width: 100%;
     text-align: center;
+    padding: 12px 14px;
+    font-size: 14px;
   }
 
   .unidade-map {
-    min-height: 240px;
+    min-height: 220px;
     border-radius: 18px;
   }
 }
