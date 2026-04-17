@@ -1,5 +1,12 @@
 import './Footer.css'
 
+const footerLinks = [
+  { href: '#home', label: 'Topo' },
+  { href: '#menu', label: 'Cardápio' },
+  { href: '#unidades', label: 'Unidades' },
+  { href: '#contact', label: 'Contato' },
+]
+
 function Footer() {
   return (
     <footer className="footer">
@@ -10,10 +17,11 @@ function Footer() {
         </div>
 
         <div className="footer-links">
-          <a href="#home">Topo</a>
-          <a href="#menu">Cardápio</a>
-          <a href="#unidades">Unidades</a>
-          <a href="#contact">Contato</a>
+          {footerLinks.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
 

@@ -1,17 +1,34 @@
+import { useState } from 'react'
 import './Contact.css'
 
+const whatsappNumber = '5521991902018'
+const defaultWhatsappMessage =
+  'Olá! Vim pelo site do Cafezinho da Bia e quero tirar uma dúvida.'
+
 function Contact() {
-  const whatsappMessage = encodeURIComponent(
-    'Olá! Vim pelo site do Cafezinho da Bia e quero tirar uma dúvida.'
-  )
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    order: '',
+  })
+
+  const whatsappMessage = encodeURIComponent(defaultWhatsappMessage)
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }))
+  }
 
   const handleManualOrder = (event) => {
     event.preventDefault()
 
-    const form = event.target
-    const name = form.name.value.trim()
-    const phone = form.phone.value.trim()
-    const order = form.order.value.trim()
+    const name = formData.name.trim()
+    const phone = formData.phone.trim()
+    const order = formData.order.trim()
 
     if (!name || !phone || !order) {
       alert('Preencha nome, WhatsApp e pedido.')
@@ -25,7 +42,13 @@ function Contact() {
         `Pedido:\n${order}`
     )
 
-    window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
+
+    setFormData({
+      name: '',
+      phone: '',
+      order: '',
+    })
   }
 
   return (
@@ -37,14 +60,14 @@ function Contact() {
               <span className="section-badge">Contato</span>
               <h2>Fale com a gente</h2>
               <p>
-                Quer fazer pedido, tirar dúvida ou perguntar sobre horários?
-                O caminho mais rápido continua sendo o WhatsApp.
+                Quer fazer pedido, tirar dúvida ou perguntar sobre horários? O
+                caminho mais rápido continua sendo o WhatsApp.
               </p>
             </div>
 
             <div className="contact-actions">
               <a
-                href={`https://wa.me/5521991902018?text=${whatsappMessage}`}
+                href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noreferrer"
                 className="btn btn-primary"
@@ -70,19 +93,25 @@ function Contact() {
                 type="text"
                 name="name"
                 placeholder="Seu nome completo"
+                value={formData.name}
+                onChange={handleChange}
               />
 
               <input
                 type="text"
                 name="phone"
                 placeholder="WhatsApp com DDD"
+                value={formData.phone}
+                onChange={handleChange}
               />
 
               <textarea
                 name="order"
                 placeholder="Descreva seu pedido..."
                 rows="6"
-              ></textarea>
+                value={formData.order}
+                onChange={handleChange}
+              />
 
               <button type="submit" className="btn btn-primary form-submit-btn">
                 Enviar Pedido

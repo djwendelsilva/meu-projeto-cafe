@@ -14,9 +14,7 @@ function Unidades() {
         </div>
 
         <div className="grid-2 unidades-grid">
-
           <div className="card unidade-info">
-
             <h3>Cidade Nova, Rio de Janeiro</h3>
 
             <div className="unidade-texto">
@@ -42,13 +40,11 @@ function Unidades() {
             >
               Ver localização
             </a>
-
           </div>
 
           <div className="card unidade-map">
             <Map />
           </div>
-
         </div>
       </div>
     </section>

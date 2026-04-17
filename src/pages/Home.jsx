@@ -2,13 +2,15 @@ import './Home.css'
 import heroDesktop from '../assets/bia.cafe.png'
 import heroMobile from '../assets/bia.cafe.mobile.png'
 
+const whatsappNumber = '5521991902018'
+
 function Home() {
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
       'Olá! Vim pelo site do Cafezinho da Bia e quero fazer um pedido.'
     )
 
-    window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
   }
 
   return (
@@ -35,9 +37,9 @@ function Home() {
             </a>
 
             <button
+              type="button"
               className="btn btn-secondary"
               onClick={handleWhatsApp}
-              type="button"
             >
               Pedir no WhatsApp
             </button>
@@ -45,7 +47,7 @@ function Home() {
         </div>
 
         <div className="home-image-wrap fade delay-3">
-          <div className="home-glow"></div>
+          <div className="home-glow" />
 
           <div className="home-image-box">
             <img

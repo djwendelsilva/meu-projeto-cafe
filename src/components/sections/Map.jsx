@@ -9,7 +9,7 @@ function Map() {
         loading="lazy"
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
+      />
     </div>
   )
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import './WhatsAppButton.css'
 
+const whatsappNumber = '5521991902018'
+
 function WhatsAppButton() {
   const [visible, setVisible] = useState(false)
 
@@ -11,7 +13,10 @@ function WhatsAppButton() {
     }
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const message = encodeURIComponent(
@@ -20,7 +25,7 @@ function WhatsAppButton() {
 
   return (
     <a
-      href={`https://wa.me/5521991902018?text=${message}`}
+      href={`https://wa.me/${whatsappNumber}?text=${message}`}
       target="_blank"
       rel="noreferrer"
       className={`whatsapp-float ${visible ? 'show' : ''}`}

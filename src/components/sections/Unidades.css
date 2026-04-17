@@ -3,40 +3,40 @@
 }
 
 .unidade-info {
-  padding: 26px;
   display: flex;
   flex-direction: column;
+  padding: 26px;
 }
 
-/* título */
 .unidade-info h3 {
-  font-size: 24px;
   margin-bottom: 14px;
+  font-size: 24px;
 }
 
-/* bloco de texto separado */
 .unidade-texto {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-bottom: 20px; /* 🔥 espaçamento real antes do botão */
+  margin-bottom: 20px;
 }
 
 .unidade-texto p {
-  color: var(--muted);
+  margin: 0;
   font-size: 15px;
   line-height: 1.6;
-  margin: 0;
+  color: var(--muted);
 }
 
-/* botão */
 .unidade-btn {
   align-self: flex-start;
 }
 
-/* mapa */
 .unidade-map {
   min-height: 360px;
   padding: 0;
   overflow: hidden;
+}
+
+.unidade-map .map-frame {
+  height: 100%;
 }

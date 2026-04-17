@@ -34,6 +34,7 @@ const menuData = [
 ]
 
 const pixKey = 'djwendelrj+bradesco@gmail.com'
+const whatsappNumber = '5521991902018'
 
 function Menu() {
   const [cart, setCart] = useState({})
@@ -43,12 +44,26 @@ function Menu() {
   const [copied, setCopied] = useState(false)
   const [addedItemId, setAddedItemId] = useState(null)
 
+  const cartItems = useMemo(() => Object.values(cart), [cart])
+
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((accumulator, item) => {
+      return accumulator + item.quantity * item.price
+    }, 0)
+  }, [cartItems])
+
+  const totalItems = useMemo(() => {
+    return cartItems.reduce((accumulator, item) => {
+      return accumulator + item.quantity
+    }, 0)
+  }, [cartItems])
+
   const addToCart = (item) => {
-    setCart((prev) => ({
-      ...prev,
+    setCart((prevCart) => ({
+      ...prevCart,
       [item.id]: {
         ...item,
-        quantity: prev[item.id] ? prev[item.id].quantity + 1 : 1,
+        quantity: prevCart[item.id] ? prevCart[item.id].quantity + 1 : 1,
       },
     }))
 
@@ -60,42 +75,39 @@ function Menu() {
   }
 
   const changeQuantity = (id, delta) => {
-    setCart((prev) => {
-      const item = prev[id]
-      if (!item) return prev
+    setCart((prevCart) => {
+      const currentItem = prevCart[id]
 
-      const newQty = item.quantity + delta
+      if (!currentItem) {
+        return prevCart
+      }
 
-      if (newQty <= 0) {
-        const updated = { ...prev }
-        delete updated[id]
-        return updated
+      const newQuantity = currentItem.quantity + delta
+
+      if (newQuantity <= 0) {
+        const updatedCart = { ...prevCart }
+        delete updatedCart[id]
+        return updatedCart
       }
 
       return {
-        ...prev,
-        [id]: { ...item, quantity: newQty },
+        ...prevCart,
+        [id]: {
+          ...currentItem,
+          quantity: newQuantity,
+        },
       }
     })
   }
-
-  const cartItems = useMemo(() => Object.values(cart), [cart])
-
-  const totalPrice = useMemo(
-    () => cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0),
-    [cartItems]
-  )
-
-  const totalItems = useMemo(
-    () => cartItems.reduce((acc, item) => acc + item.quantity, 0),
-    [cartItems]
-  )
 
   const copyPixKey = async () => {
     try {
       await navigator.clipboard.writeText(pixKey)
       setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
+
+      setTimeout(() => {
+        setCopied(false)
+      }, 1500)
     } catch {
       alert('Erro ao copiar a chave Pix.')
     }
@@ -108,21 +120,21 @@ function Menu() {
     }
 
     const itemsText = cartItems
-      .map(
-        (item) =>
-          `- ${item.name} x${item.quantity} = R$ ${(item.quantity * item.price).toFixed(2)}`
-      )
+      .map((item) => {
+        const subtotal = (item.quantity * item.price).toFixed(2)
+        return `- ${item.name} x${item.quantity} = R$ ${subtotal}`
+      })
       .join('\n')
 
     const message = encodeURIComponent(
       `Pedido:\n\n${itemsText}\n\nTotal: R$ ${totalPrice.toFixed(
         2
-      )}\n\nNome: ${customerName || 'Não informado'}\n\nPagamento: ${
-        paymentMethod
-      }\n\nChave Pix: ${pixKey}\n\nObs: ${notes || 'Nenhuma'}`
+      )}\n\nNome: ${customerName || 'Não informado'}\n\nPagamento: ${paymentMethod}\n\nChave Pix: ${pixKey}\n\nObs: ${
+        notes || 'Nenhuma'
+      }`
     )
 
-    window.open(`https://wa.me/5521991902018?text=${message}`, '_blank')
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank')
   }
 
   return (
@@ -143,7 +155,7 @@ function Menu() {
 
                 return (
                   <div key={item.id} className="menu-item">
-                    <div>
+                    <div className="item-left">
                       <strong>{item.name}</strong>
                       {item.tag && <p className="tag">{item.tag}</p>}
                     </div>
@@ -185,14 +197,15 @@ function Menu() {
           ))}
 
           <input
+            type="text"
             placeholder="Seu nome"
             value={customerName}
-            onChange={(e) => setCustomerName(e.target.value)}
+            onChange={(event) => setCustomerName(event.target.value)}
           />
 
           <select
             value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
+            onChange={(event) => setPaymentMethod(event.target.value)}
           >
             <option>Pix</option>
             <option>Dinheiro</option>
@@ -211,12 +224,16 @@ function Menu() {
           <textarea
             placeholder="Observações"
             value={notes}
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={(event) => setNotes(event.target.value)}
           />
 
           <h3>Total: R$ {totalPrice.toFixed(2)}</h3>
 
-          <button type="button" className="btn btn-primary" onClick={finalizeOrder}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={finalizeOrder}
+          >
             Finalizar no WhatsApp
           </button>
         </div>

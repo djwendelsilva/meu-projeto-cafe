@@ -1,40 +1,65 @@
-# ☕ Cafezinho da Bia - Single Page Application
+# Cafezinho da Bia
 
-Aplicação web desenvolvida em **React JS** simulando o site de uma cafeteria real, com foco em organização de código, componentização e experiência do usuário.
-
-🔗 **Acesse o projeto online:**  
-https://djwendelsilva.github.io/meu-projeto-cafe/
+Aplicação web desenvolvida em **React JS** como projeto final de curso, com foco em **componentização**, **responsividade**, **organização de código**, **integração com mapa** e **dockerização**.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Projeto online
+
+Acesse aqui: https://djwendelsilva.github.io/meu-projeto-cafe/
+
+---
+
+## Objetivo
+
+Criar uma **Single Page Application (SPA)** para representar uma cafeteria real, permitindo ao usuário:
+
+- conhecer a proposta da marca;
+- visualizar o cardápio;
+- localizar a unidade;
+- entrar em contato rapidamente;
+- montar um pedido e finalizar pelo WhatsApp.
+
+---
+
+## Tecnologias utilizadas
 
 - React JS
 - Vite
+- CSS
 - Docker
-- Git & Git Flow
-- Google Maps API
+- Docker Compose
+- Git e GitHub
+- Google Maps
 
 ---
 
-## 🧠 Funcionalidades
+## Funcionalidades
 
-- Estrutura SPA com múltiplas seções (Home, Contato)
-- Componentes reutilizáveis (Header, Footer, Cards, etc.)
-- Navegação fluida entre seções
-- Integração com Google Maps
-- Botão de contato via WhatsApp
-- Layout responsivo (mobile e desktop)
+- Estrutura SPA com múltiplas seções
+- Header fixo com navegação por âncoras
+- Seção Home com destaque visual
+- Cardápio com categorias e carrinho simples
+- Controle de quantidade dos itens
+- Finalização de pedido via WhatsApp
+- Seção de localização com Google Maps
+- Formulário de contato com `useState`
+- Botão flutuante do WhatsApp
+- Layout responsivo para desktop e mobile
 
 ---
 
-## 🧱 Estrutura do Projeto
+## Estrutura do projeto
 
 ```bash
 src/
+  assets/
   components/
-    layout/
+    Footer/
+    Header/
     sections/
     ui/
   pages/
-  assets/
+  styles/
+  App.jsx
+  main.jsx
