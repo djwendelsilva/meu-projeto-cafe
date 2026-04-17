@@ -17,6 +17,10 @@
   gap: 20px;
 }
 
+.contact-text {
+  max-width: 34ch;
+}
+
 .contact-text h2 {
   margin-bottom: 10px;
   font-size: clamp(24px, 3vw, 32px);
@@ -38,7 +42,7 @@
 .contact-text p,
 .contact-form-header p {
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--muted);
 }
 
@@ -73,9 +77,9 @@
 .contact-form textarea {
   width: 100%;
   padding: 15px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text);
   outline: none;
   transition: border-color 0.2s ease, background 0.2s ease;
@@ -89,7 +93,7 @@
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: rgba(197, 139, 69, 0.35);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .contact-form textarea {
@@ -107,6 +111,10 @@
 @media (max-width: 900px) {
   .contact-layout {
     grid-template-columns: 1fr;
+  }
+
+  .contact-text {
+    max-width: 100%;
   }
 }
 
