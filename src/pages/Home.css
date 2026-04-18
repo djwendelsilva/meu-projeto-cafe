@@ -216,7 +216,7 @@
 @media (max-width: 480px) {
   .home {
     padding-top: calc(var(--header-height) + 12px);
-    padding-bottom: 32px;
+    padding-bottom: 28px;
   }
 
   .home .container {
@@ -225,7 +225,7 @@
   }
 
   .home-grid {
-    gap: 16px;
+    gap: 12px;
   }
 
   .home-text {
@@ -249,7 +249,7 @@
 
   .home-text p {
     max-width: 36ch;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     font-size: 15px;
     line-height: 1.7;
   }
@@ -257,8 +257,13 @@
   .home-actions {
     flex-direction: row;
     justify-content: center;
-    gap: 10px;
+    margin-bottom: 6px;
+    gap: 8px;
     flex-wrap: nowrap;
+  }
+
+  .home-image-wrap {
+    margin-top: 0; 
   }
 
   .home-actions .btn {
@@ -268,8 +273,8 @@
   }
 
   .home-image-box {
-    max-width: 4200px;
-    aspect-ratio: 4 / 5;
+    max-width: 420px;
+    aspect-ratio: auto;
     border: none;
     border-radius: 0;
     background: transparent;
