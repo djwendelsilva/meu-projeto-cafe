@@ -1,70 +1,76 @@
-# Cafezinho da Bia
+Cafezinho da Bia 
 
-Aplicação web desenvolvida em **React JS** como projeto final de curso, com foco em **componentização**, **responsividade**, **organização de código** e **dockerização**.
+Projeto desenvolvido como trabalho prático utilizando **React + Vite**, com foco em **componentização**, **responsividade**, **validação de formulário** e **deploy online**.
 
 ---
 
-## 🌐 Projeto online
+* Acesse o projeto
 
-Acesse aqui:  
+> **Site (Deploy):**  
 https://djwendelsilva.github.io/meu-projeto-cafe/
 
----
-
-## 🎯 Objetivo
-
-Criar uma **Single Page Application (SPA)** que simula o site de uma cafeteria, permitindo ao usuário:
-
-- conhecer a proposta da marca;
-- visualizar o cardápio;
-- localizar a unidade;
-- entrar em contato rapidamente;
-- montar um pedido e finalizar pelo WhatsApp.
+> **Repositório no GitHub:**  
+https://github.com/djwendelsilva/meu-projeto-cafe
 
 ---
 
-## ⚙️ Tecnologias utilizadas
+* Sobre o projeto
 
-- React JS
+O **Cafezinho da Bia** é uma SPA (Single Page Application) criada para apresentar uma cafeteria de forma moderna, organizada e responsiva.
+
+A aplicação possui navegação por seções, layout adaptado para diferentes telas, formulário com validação e integração com WhatsApp.
+
+---
+
+* Tecnologias utilizadas
+
+- React
 - Vite
 - JavaScript
 - CSS
 - Docker
 - Docker Compose
 - Git e GitHub
-- Google Maps
+- GitHub Pages
 
 ---
 
-## 🚀 Funcionalidades
+* Estrutura da aplicação
 
-- Estrutura SPA com múltiplas seções (Home, Cardápio, Unidades, Contato)
-- Header fixo com navegação por âncoras
-- Seção Home com destaque visual
-- Cardápio com categorias e carrinho simples
-- Controle de itens do pedido
-- Finalização de pedido via WhatsApp
-- Seção de localização com Google Maps
-- Formulário de contato com `useState`
-- Validação de campos obrigatórios
-- Limpeza automática dos campos após envio
-- Feedback visual de envio
-- Botão flutuante do WhatsApp
-- Layout responsivo para desktop e mobile
+A aplicação foi organizada em componentes:
+
+- Header  
+- Home  
+- Menu  
+- Unidades  
+- Contact  
+- Footer  
 
 ---
 
-## 🧱 Estrutura do projeto
+* Funcionalidades
+
+- Navegação por âncoras entre seções  
+- Layout responsivo para desktop e mobile  
+- Cardápio com área de pedido  
+- Seção de unidades com mapa  
+- Formulário com:
+  - validação de campos vazios  
+  - limpeza automática dos campos  
+  - mensagem de sucesso  
+- Botão para contato via WhatsApp  
+- Deploy online no GitHub Pages  
+- Execução via Docker  
+
+---
+
+* Responsividade
+
+O projeto foi ajustado para diferentes tamanhos de tela, garantindo melhor experiência no desktop e no mobile.
+
+---
+
+* Como executar com Docker
 
 ```bash
-src/
-  assets/
-  components/
-    Footer/
-    Header/
-    sections/
-    ui/
-  pages/
-  styles/
-  App.jsx
-  main.jsx
+docker compose up --build
